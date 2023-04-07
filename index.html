@@ -1,7 +1,74 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usman Malik</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body>
-usmanmalik.dev
-</body>
-</html>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+<!--Header-->
+<header class="bg-white">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+            <a class="font-bold text-xl lg:text-2xl" href="#">Usman Malik: Software Developer</a>
+            <button class="text-gray-500 hover:text-gray-600 lg:hidden">
+                <svg class="fill-current h-6 w-6" viewBox="0 0 24 24">
+                    <path class="heroicon-ui" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!--Main-->
+<main class="flex flex-col lg:flex-row lg:min-h-screen">
+    <!--Sidebar-->
+    <div x-data="{ isOpen: false }" class="bg-white-800 text-gray-500 w-full lg:w-1/6 flex flex-col justify-between">
+        <button @click="isOpen = !isOpen" class="block lg:hidden p-4 focus:outline-none" id="menu-toggle">
+            <svg class="fill-current h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <title>Menu</title>
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+            </svg>
+        </button>
+        <nav x-show="isOpen || window.innerWidth >= 1024" class="px-4 mt-4 lg:block" id="sidebar">
+            <ul class="text-lg">
+                <li class="mb-4"><a class="hover:text-gray-100" href="#">Home</a></li>
+                <li class="mb-4"><a class="hover:text-gray-100" href="#">About</a></li>
+                <li class="mb-4"><a class="hover:text-gray-100" href="#">Portfolio</a></li>
+                <li class="mb-4"><a class="hover:text-gray-100" href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!--Content-->
+    <div class="bg-white w-full lg:w-4/5">
+        <div class="p-6 lg:px-16 lg:py-12">
+            <h1 class="text-2xl lg:text-4xl font-bold mb-6">Welcome to My Website</h1>
+            <p class="mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a ligula vel eros convallis efficitur vitae ac eros. Vestibulum hendrerit dignissim enim, et feugiat neque consequat non. Ut finibus sodales lectus quis fermentum. Donec elementum risus eget risus aliquet tristique.</p>
+            <p class="mb-6">Praesent id tellus enim. Nulla ullamcorper ipsum at elit tristique interdum. Nam facilisis faucibus dolor, eget suscipit nisi commodo vel. Donec maximus ultrices pharetra.</p>
+            <p class="mb-6">Phasellus ac sapien ac libero ullamcorper aliquam nec vitae tellus. Vestibulum interdum tellus vel est luctus laoreet. Sed non ligula convallis, volutpat massa in, tincidunt justo
+            </p>
+            <p class="mb-6">Vestibulum auctor, eros a gravida rhoncus, ipsum quam tristique massa, eget sagittis dolor quam eu orci. In a justo turpis. Sed iaculis orci velit, sed tincidunt ante tristique ac. Sed vitae lobortis elit.</p>
+            <p class="mb-6">Donec lobortis aliquet lorem, sed sagittis enim aliquet a. Nullam eleifend felis id metus facilisis bibendum. Integer non lacus vitae nibh volutpat luctus. Sed vehicula, sapien id congue facilisis, velit tellus suscipit justo, non malesuada magna odio at nisi. Integer condimentum est sit amet elit accumsan volutpat.</p>
+        </div>
+    </div>
+</main>
+
+<!--Footer-->
+<footer class="bg-gray-800 text-white mt-12">
+    <div class="container mx-auto py-4 px-6">
+        <div class="flex justify-between items-center">
+            <div>
+                <p class="text-sm">&copy; 2023 My Website. All rights reserved.</p>
+            </div>
+            <div class="flex items-center">
+                <a href="#" class="mx-3 hover:text-gray-400">Privacy Policy</a>
+                <span class="text-gray-400">|</span>
+                <a href="#" class="mx-3 hover:text-gray-400">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+    </div>
+</footer>
