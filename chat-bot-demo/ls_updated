@@ -1,0 +1,53 @@
+// remove limesurvey content
+//document.getElementsByClassName("content")[0].style.display = "none" // limesurvey 2
+document.getElementById("dynamicReloadContainer").style.display = "none" // limesurvey 3
+// white pixel as background image
+document.body.style.backgroundImage = 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAA'+
+    'l21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=)'
+// show experimental content
+iframe = document.createElement("iframe")
+iframe.setAttribute("src", "https://lavender-valaree-15.tiiny.site/")
+iframe.style.overflow = "hidden"
+iframe.style.width = document.documentElement.clientWidth + "px"
+iframe.style.height = document.documentElement.clientHeight + "px"
+iframe.style.border = 0
+document.body.appendChild(iframe)
+// react to experiments data
+// child must call window.parent.postMessage([{iTrial: 0, condition: "AX", response: "target"}], "*")
+
+window.addEventListener("message", function(event) {
+
+    //var data = e[e.message ? "message" : "data"]
+    //console.log("data escaping iframe:",data)
+
+    //console.log('messageevent', event)
+    console.log('messageevent data', event.data, typeof(event.data))
+    try {
+        // It's valid JSON
+        conversation = JSON.parse(event.data);
+        console.log('conversation', conversation)
+        ///////
+        //saving the value to answer
+        value = LimeSurvey.EM.getQuestionValue('Q00');
+        console.log('old value',value)
+        console.log(LimeSurvey.EM.setQuestionValue('Q00', 'New Value')); // Replace 'Q00' with your question code
+
+        $('#answerQ00').trigger('change');
+
+        value = LimeSurvey.EM.getQuestionValue('Q00');
+        console.log('old value',value)
+
+        //This call disables the chatbot
+        //$('#answer{Q00}').val('test')
+        ///////
+
+        document.getElementById("ls-button-submit").click() // finish, limesurvey 3
+        //move to next window
+    } catch (e) {
+        console.log('not valid json')
+        //return false; // It's not valid JSON
+    }
+
+    //document.getElementById("movenextbtn").click() // proceed to next question group
+    //document.getElementById("ls-button-submit").click() // finish, limesurvey 3
+}, false)
