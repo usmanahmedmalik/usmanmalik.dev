@@ -3,30 +3,30 @@
 */
 
 const categoryOptions = {
-    context_company: ["1 (Alleen)", "2 (Met vrienden)" ,"3 (Met familie)"," 4 (Met mijn partner)", "5 (Met medestudenten)", "6 (Met collega's)", "7 (Met kennissen)", "8 (Met vreemden/anderen)"],
-    context_location:["1 (Thuis)","2 (Onderweg)","3	(School/universiteit)","4 (Openbaren locatie)","5 (Werk)","6 (Bij vriend(en)/familie thuis)"],
-    context_activity: ["1 (Alleen studeren)","2 (Met anderen studeren)", "3 (Een les volgen)", "4 (Onderweg)", "5 (Werken)", "6 (In een gesprek)", "7 (Ontspannen, e.g., zitten/liggen, gamen, lezen)", "8 (Sporten)", "9 (Aan het eten)", "10 (Huishoudelijk klusje)", "11 (Anders)"],
+    context_company: ["Alleen", "Met vrienden" ,"Met familie","Met mijn partner", "Met medestudenten", "Met collega's", "Met kennissen", "Met vreemden/anderen"],
+    context_location:["Thuis","Onderweg","School/universiteit","Openbare locatie","Werk","Bij vriend(en)/familie thuis"],
+    context_activity: ["Alleen studeren","Met anderen studeren", "Een les volgen", "Onderweg", "Werken", "In een gesprek", "Ontspannen, e.g., zitten/liggen, gamen, lezen", "Sporten", "Aan het eten", "Huishoudelijk klusje", "Anders"],
 
-    context_onoff: ["1 (Online)", "2 (Offline)"],
-    context_physical: ["1 (e.g., rusten)","2	(e.g., zitten)", "3 (e.g., lopen)",  "4 (e.g., huishoudelijke taak zoals stofzuigen)", "5 (e.g., fietsen)", "6 (e.g., tennissen)", "7 (e.g., rennen)"],
+    context_onoff: ["Online", "Offline"],
+    context_physical: [" 1 (e.g., rusten)","2 (e.g., zitten)", "3 (e.g., lopen)",  "4 (e.g., huishoudelijke taak zoals stofzuigen)", "5 (e.g., fietsen)", "6 (e.g., tennissen)", "7 (e.g., rennen)"],
 
-    affect_PA1: ["1 (helemaal niet)", "2 (een beetje)", "3 (enigszins)", "4 (matig)", "5 (redelijk)", "6 (erg)", "7 (zeer)"],
-    affect_PA2: ["1 (helemaal niet)", "2 (een beetje)", "3 (enigszins)", "4 (matig)", "5 (redelijk)", "6 (erg)", "7 (zeer)"],
-    affect_NA1: ["1 (helemaal niet)", "2 (een beetje)", "3 (enigszins)", "4 (matig)", "5 (redelijk)", "6 (erg)", "7 (zeer)"],
-    affect_NA2: ["1 (helemaal niet)", "2 (een beetje)", "3 (enigszins)", "4 (matig)", "5 (redelijk)", "6 (erg)", "7 (zeer)"],
+    affect_PA1: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    affect_PA2: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    affect_NA1: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    affect_NA2: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
 
-    stress: ["1 (helemaal niet)", "2 (een beetje)", "3 (enigszins)", "4 (matig)", " 5 (redelijk)", "6 (erg)", "7 (zeer)"],
+    stress: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
 
-    vitality_VL1: ["1 (helemaal niet)", "2 (een beetje)", "3 (enigszins)", "4 (matig)", "5 (redelijk)", "6 (erg)", "7 (zeer)"],
-    vitality_VL2: ["1 (helemaal niet)", "2 (een beetje)", "3 (enigszins)", "4 (matig)", "5 (redelijk)", "6 (erg)", "7 (zeer)"],
+    vitality_VL1: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    vitality_VL2: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
 
-    social_wellbeing_SO1: ["1 (helemaal niet)", "2 (een beetje)", "3 (enigszins)", "4 (matig)", "5 (redelijk)", "6 (erg)", "7 (zeer)"],
-    social_wellbeing_SO2: ["1 (helemaal niet)", "2 (een beetje)", "3 (enigszins)", "4 (matig)", "5 (redelijk)", "6 (erg)", "7 (zeer)"],
-    social_wellbeing_SO3: ["1 (helemaal niet)", "2 (een beetje)", "3 (enigszins)", "4 (matig)", "5 (redelijk)", "6 (erg)", "7 (zeer)"],
+    social_wellbeing_SO1: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    social_wellbeing_SO2: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    social_wellbeing_SO3: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
 
-    engagement_burden: ["1 (helemaal oneens)","2 (oneens)","3 (neutral)", "4 (eens)","5 (helemaal eens)"],
-    engagement_disclosure: ["1 (helemaal oneens)","2 (oneens)", "3 (neutral)", "4 (eens)","5 (helemaal eens)"],
-    perception_SP: ["1 (helemaal oneens)","2 (oneens)", "3 (neutral)", "4 (eens)","5 (helemaal eens)"],
+    engagement_burden: ["helemaal oneens","oneens","neutral", "eens","helemaal eens"],
+    engagement_disclosure: ["helemaal oneens","oneens", "neutral", "eens","helemaal eens"],
+    perception_SP: ["helemaal oneens","oneens", "neutral", "eens","helemaal eens"],
     perception_AN: null, //No options handled by slider
     welcome: null, // No options for welcome
     thankyou: null,
@@ -34,8 +34,8 @@ const categoryOptions = {
     };
 const questionBank = {
         welcome: [
-            "Hello! Welcome to our chat. Let's start by checking in on how you're feeling today. 😊",
-            "Hello! Welcome to our chat. 😊",
+            //"Hello! Welcome to our chat. Let's start by checking in on how you're feeling today. 😊",
+            //"Hello! Welcome to our chat. 😊",
             "Hey hallo student, goed je weer te zien!",
             "Hey hallo student, goed je weer te zien 😊",
             "Hey hallo student, dank voor je reactie 😊",
@@ -69,12 +69,12 @@ const questionBank = {
             "Hoi student, wat goed dat je weer reageert!",
             "Hey student, goed je weer te zien! Samen komen we door al die belangrijke vragen heen 😊",
             "Hey student, goed je weer te zien 😊 Samen komen we door al die belangrijke vragen heen!",
-            "Hey hallo, dank voor je reactie! Samen zullen we de vragen doorlopen, gaat goed komen toch ;)",
-            "Hoi student, dank voor je reactie! Samen zullen we de vragen doorlopen, gaat wel lukken toch ;)"
+            "Hey hallo, dank voor je reactie! Samen zullen we de vragen doorlopen, gaat goed komen toch ;",
+            "Hoi student, dank voor je reactie! Samen zullen we de vragen doorlopen, gaat wel lukken toch ;"
         ],
         instructions: [
-            "instructions",
-            "instructions 2",
+            //"instructions",
+            //"instructions 2",
             "Ik zal je mijn vragen over je welbevinden nu sturen. Denk terug aan het moment vlak voordat je de notificatie zag.",
             "Ik zal je nu de vragen over je welbevinden sturen. Denk hierbij even goed terug aan het moment vlak voordat je de notificatie zag.",
             "Hier komen de vragen over je welbevinden! Denk eerst nog goed terug aan het moment vlak voordat je de notificatie zag.",
@@ -234,6 +234,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let conversationStep = 0;   // Track step in conversation
     let welcomeSent = false; // Track if the welcome message has been sent
+    let isFirstUserInput = true;    // Track if first user input has been sent
+    let isSecondUserInput = true;    // Track if second user input has been sent
 
 
 
@@ -245,79 +247,139 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function askNextQuestion() {
+        //chooses the category
+        let [main_category,category] = chooseCategory();
+        //displays the question
+        displayQuestion(main_category, category)
+    }
+    function chooseCategory(){
         let category;
         let main_category;
-
-        // Ensure the first message is always from "welcome"
+         // Ensure the first message is always from "welcome"
         if (!welcomeSent) {
-            category = "welcome";
-            welcomeSent = true; // Mark welcome message as sent
-            conversationStep= conversationStep + 1; // Move to the next step
-        }
-        else
-        {
-            // After the first message, continue normal conversation
-            if (conversationStep >= conversationFlow.length)
+                category = "welcome";
+                welcomeSent = true; // Mark welcome message as sent
+                conversationStep= conversationStep + 1; // Move to the next step
+            }
+            else
             {
-                return; // Stop if at the end
-            }
-            //Here choose the random category for burden1 burden2 or so on....
-            main_category = ""
-            // Randomly select either 'burden1' or 'burden2' for engagement
-            if (conversationFlow[conversationStep].category === "engagement_burden") {
-            const sub_categories = [
-                "engagement_burden1",
-                "engagement_burden2"
-                ];
-                main_category = "engagement_burden"
-                category = sub_categories[Math.floor(Math.random() * sub_categories.length)];
-                conversationStep= conversationStep + 1; // Move to the next step
-            }
-            else if(conversationFlow[conversationStep].category === "engagement_disclosure"){
+                // After the first message, continue normal conversation
+                if (conversationStep >= conversationFlow.length)
+                {
+                    return; // Stop if at the end
+                }
+                //Here choose the random category for burden1 burden2 or so on....
+                main_category = ""
+                // Randomly select either 'burden1' or 'burden2' for engagement
+                if (conversationFlow[conversationStep].category === "engagement_burden") {
                 const sub_categories = [
-                "engagement_disclosure1",
-                "engagement_disclosure2",
-                "engagement_disclosure3",
-                "engagement_disclosure4"
-                ];
-                main_category = "engagement_disclosure"
-                category = sub_categories[Math.floor(Math.random() * sub_categories.length)];
-                conversationStep= conversationStep + 1; // Move to the next step
-            }
-            else if(conversationFlow[conversationStep].category === "perception_SP"){
-            const sub_categories = [
-                "perception_SP1",
-                "perception_SP2",
-                "perception_SP3",
-                "perception_SP4"
-                ];
-                main_category = "perception_SP"
-                category = sub_categories[Math.floor(Math.random() * sub_categories.length)];
-                conversationStep= conversationStep + 1; // Move to the next step
-            }
-            else if(conversationFlow[conversationStep].category === "perception_AN"){
-            const sub_categories = [
-                "perception_AN1",
-                "perception_AN2",
-                "perception_AN3",
-                "perception_AN4"
-                ];
-                main_category = "perception_AN"
-                category = sub_categories[Math.floor(Math.random() * sub_categories.length)];
-                conversationStep= conversationStep + 1; // Move to the next step
-            }
+                    "engagement_burden1",
+                    "engagement_burden2"
+                    ];
+                    main_category = "engagement_burden"
+                    category = sub_categories[Math.floor(Math.random() * sub_categories.length)];
+                    conversationStep= conversationStep + 1; // Move to the next step
+                }
+                else if(conversationFlow[conversationStep].category === "engagement_disclosure"){
+                    const sub_categories = [
+                    "engagement_disclosure1",
+                    "engagement_disclosure2",
+                    "engagement_disclosure3",
+                    "engagement_disclosure4"
+                    ];
+                    main_category = "engagement_disclosure"
+                    category = sub_categories[Math.floor(Math.random() * sub_categories.length)];
+                    conversationStep= conversationStep + 1; // Move to the next step
+                }
+                else if(conversationFlow[conversationStep].category === "perception_SP"){
+                const sub_categories = [
+                    "perception_SP1",
+                    "perception_SP2",
+                    "perception_SP3",
+                    "perception_SP4"
+                    ];
+                    main_category = "perception_SP"
+                    category = sub_categories[Math.floor(Math.random() * sub_categories.length)];
+                    conversationStep= conversationStep + 1; // Move to the next step
+                }
+                else if(conversationFlow[conversationStep].category === "perception_AN"){
+                const sub_categories = [
+                    "perception_AN1",
+                    "perception_AN2",
+                    "perception_AN3",
+                    "perception_AN4"
+                    ];
+                    main_category = "perception_AN"
+                    category = sub_categories[Math.floor(Math.random() * sub_categories.length)];
+                    conversationStep= conversationStep + 1; // Move to the next step
+                }
 
-            else {
-                category = conversationFlow[conversationStep].category;
-                main_category = category
-                conversationStep= conversationStep + 1; // Move to the next step
-            }
+                else {
+                    category = conversationFlow[conversationStep].category;
+                    main_category = category
+                    conversationStep= conversationStep + 1; // Move to the next step
+                }
 
+            }
+            return [main_category,category];
+    }
+    function chooseSliderValue(category){
+        //this funtion chooses the values to be placed in the slider - e.g. if AN1 is shown, on the left it should be ‘onecht’, on the right ‘natuurlijk’, if AN2, on the left ‘lijkend op een machine’, on the right ‘lijkend op een mens’, etc.
+        let min = -3
+        let max = 3
+        if (category == 'perception_AN1')
+        {
+            min = 'onecht'
+            max = 'natuurlijk'
         }
-        //console.log('conversation step, executed category', conversationStep, category)
+        else if (category ==  'perception_AN2')
+        {
+            min = 'lijkend op een machine'
+            max = 'lijkend op een mens'
+        }
+        else if (category ==  'perception_AN3')
+        {
+            min = 'onbewust'
+            max = ' heeft een bewustzijn'
+        }
+        else if (category == 'perception_AN4')
+        {
+            min = 'kunstmatig'
+            max = 'levensecht'
+        }
 
-        //conversationStep= conversationStep + 1; // Move to the next step
-        // Get random questions from the category
+        return  [min,max]
+    }
+    function updateTooltip(slider, tooltip, firsttime){
+          const min = parseFloat(slider.min);
+          const max = parseFloat(slider.max);
+          const val = parseFloat(slider.value);
+          const percent = (val - min) / (max - min);
+
+          // 2. Get actual slider width in pixels
+          const sliderWidth = slider.offsetWidth;
+
+          // 3. Calculate pixel position
+          const positionPx = percent * sliderWidth;
+
+          if(firsttime)
+          {
+            console.log('sliderWidth', sliderWidth);
+            console.log(`Slider thumb position: ${positionPx}px`, percent);
+          }
+
+
+          let tooltipLeft = percent * sliderWidth;
+
+          tooltip.textContent = val;
+
+          //tooltip.style.left = `${positionPx}px`;
+          tooltip.style.left = (positionPx - 55) + "px";
+          //tooltip.style.left = `${tooltipLeft}px`;
+
+    }
+    function displayQuestion(main_category, category){
+    // Get random questions from the category
         const questions = questionBank[category];
         if (!questions || questions.length === 0) return; // Safety check
 
@@ -349,98 +411,136 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-        // Check if the category has options
-        const options = categoryOptions[main_category];
-        if (options)
-        {
+            // Check if the category has options
+            const options = categoryOptions[main_category];
+            if (options)
+            {
 
-            //If there are available options then dont allow the users for the open input
+                //If there are available options then dont allow the users for the open input
 
-            inputField.disabled = true
+                inputField.disabled = true
 
-            const optionsContainer = document.createElement("div");
-            optionsContainer.classList.add("chat-options");
-            options.forEach(option => {
-                const optionButton = document.createElement("button");
-                optionButton.classList.add("option-button");
-                optionButton.innerText = option;
-                optionButton.id = options.indexOf(option) + 1    //starting options index from 1
-                optionButton.value = option
-                optionButton.addEventListener("click", () => handleUserOption(option, optionButton));
-                optionsContainer.appendChild(optionButton);
-            });
+                const optionsContainer = document.createElement("div");
+                optionsContainer.classList.add("chat-options");
+                options.forEach(option => {
+                    const optionButton = document.createElement("button");
+                    optionButton.classList.add("option-button");
+                    optionButton.innerText = option;
+                    optionButton.id = options.indexOf(option) + 1    //starting options index from 1
+                    optionButton.value = option
+                    optionButton.addEventListener("click", () => handleUserOption(option, optionButton));
+                    optionsContainer.appendChild(optionButton);
+                });
 
-            messageList.appendChild(optionsContainer);
+                messageList.appendChild(optionsContainer);
 
-            //inputField.disabled = false
-            //console.log('optionsContainer', optionsContainer)
-        }
-        else if (main_category === "perception_AN")
-        {
+                //inputField.disabled = false
+                //console.log('optionsContainer', optionsContainer)
+            }
+            else if (main_category === "perception_AN")
+            {
 
-            // Disable text input
-            inputField.disabled = true;
+                // Disable text input
+                inputField.disabled = true;
 
-            // Create container for slider
-            const sliderContainer = document.createElement("div");
-            sliderContainer.classList.add("chat-options"); // to stay consistent with option buttons
+                // Create container for slider
+                const sliderContainer = document.createElement("div");
+                sliderContainer.classList.add("chat-options"); // to stay consistent with option buttons
 
-            // Set slider HTML content
-            sliderContainer.innerHTML = `
-                <label for="responseSlider"></label>
-                <input type="range" id="responseSlider" name="responseSlider" min="-3" max="3" value="0">
-                <span id="sliderValue">0</span>
-            `;
+                //choose the slider value
+                let [min,max] = chooseSliderValue(category)
 
-            // Append container to message list
-            messageList.appendChild(sliderContainer);
+                // Set slider HTML content
 
-            // Get slider and value span elements
-            const slider = sliderContainer.querySelector("#responseSlider");
-            const valueSpan = sliderContainer.querySelector("#sliderValue");
+                sliderContainer.innerHTML = `
+                  <label for="responseSlider"></label>
+                  <div class="slider-wrapper">
+                    <span id="sliderValue1">${min}</span>
+                    <div class="slider-inner-wrapper">
+                      <input type="range" min="-3" max="3" value="3" class="slider" id="responseSlider">
+                      <div class="slider-tooltip" id="sliderTooltip">3</div>
+                    </div>
+                    <span id="sliderValue2">${max}</span>
+                  </div>
+                `;
 
-            // Update value span on slider input
-            slider.addEventListener("input", (e) => {
-                valueSpan.textContent = e.target.value;
-            });
+                // Append container to message list
+                messageList.appendChild(sliderContainer);
 
-            // On slider change (submission)
-            slider.addEventListener("change", () => {
-                const responseValue = slider.value;
-                handleSliderResponse(responseValue, slider)
-                // Remove the slider container from the chat once the user finalizes the value
-                slider.remove();
-                valueSpan.remove();
-                // Proceed to the next step
-                handleResponse();
-            });
+                // Get slider and value span elements
+                const slider = sliderContainer.querySelector("#responseSlider");
+                const valueSpan1 = sliderContainer.querySelector("#sliderValue1");
+                const valueSpan2 = sliderContainer.querySelector("#sliderValue2");
+                const tooltip = document.getElementById('sliderTooltip');
 
-        }
+                // Update value span on slider input
+                slider.addEventListener("input", (e) => {
+                  //change tooltip here
+                  tooltip.style.display = 'block';  // show tooltip
+                  updateTooltip(slider,tooltip,false);  //false executed on update
+                });
+                 // Initial tooltip position
+                updateTooltip(slider,tooltip,true); //true => executed for the first time
 
-            // Auto-scroll to latest message
-            messageList.scrollTop = messageList.scrollHeight;
+                // On slider change (submission)
+                slider.addEventListener("change", () => {
+                    const responseValue = slider.value;
+                    handleSliderInput(responseValue, slider)
+                    // Remove the slider container and related contents from the chat once the user finalizes the value
+                    slider.remove();
+                    valueSpan1.remove();
+                    valueSpan2.remove();
+                    tooltip.style.display = 'none'  //hide tooltip
+                    // Proceed to the next step
+                    handleResponse();
+                });
+
+            }
+
+            //todo: do not take the input when..
+            if(category == "welcome" || category == "instructions" || category =="thankyou")
+            {
+                askNextQuestion();
+                 if(category == "thankyou")
+                    endChat();
+            }
+            else
+            {
+                // Auto-scroll to latest message
+                messageList.scrollTop = messageList.scrollHeight;
+            }
         }); // showTypingIndicator(()
     }
 
-    function handleSliderResponse(responseValue, slider){
+    function handleSliderInput(responseValue, slider){
         //it updates the slider response
         const answerID = getAnswerID();
         const questionID = getQuestionID();
         const id = questionID.substring(2);
         const existingQuestionId = id.includes("perception_AN");
         if (existingQuestionId) {
-            let existingUserMessage = document.getElementById(answerID);
-            if (existingUserMessage && existingUserMessage.id.includes("perception_AN")) {
-             // Update existing message
-                   existingUserMessage.innerHTML = responseValue;
-             } else {
-                        // Create new message element
-
-                   const userMessage = document.createElement("div");
-                   userMessage.classList.add("chat-message", "user-message");
-                   userMessage.innerHTML = `<div class="chat-message-text" id="${id}">${responseValue}</div>`;
-                        messageList.appendChild(userMessage);
-             }
+            if(answerID)
+            {
+                let existingUserMessage = document.getElementById(answerID);
+                if (existingUserMessage && existingUserMessage.id.includes("perception_AN")) {
+                 // Update existing message
+                       existingUserMessage.innerHTML = responseValue;
+                 } else {
+                            // Create new message element
+                       const userMessage = document.createElement("div");
+                       userMessage.classList.add("chat-message", "user-message");
+                       userMessage.innerHTML = `<div class="chat-message-text" id="${id}">${responseValue}</div>`;
+                       messageList.appendChild(userMessage);
+                 }
+            }
+            else
+            {
+                  // Create new message element
+                  const userMessage = document.createElement("div");
+                  userMessage.classList.add("chat-message", "user-message");
+                  userMessage.innerHTML = `<div class="chat-message-text" id="${id}">${responseValue}</div>`;
+                  messageList.appendChild(userMessage);
+            }
         }
     }
 
@@ -467,6 +567,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function handleResponse() {
         console.log('MessageList in HandleResponse', messageList)
+
         if (conversationStep < conversationFlow.length) {
             setTimeout(() => {
                 inputField.disabled == true
@@ -485,15 +586,15 @@ document.addEventListener("DOMContentLoaded", () => {
         //console.log('userMessages', userMessages)
         const lastUserMessage = userMessages[userMessages.length - 1]; // Get the last user message
         //console.log('lastUserMessage', lastUserMessage)
-        const lastUserMessagesTextElement = lastUserMessage.querySelector(".chat-message div:last-child"); // Last child div with text
-        //console.log('lastUserMessagesTextElement', lastUserMessagesTextElement)
-        const lastuserMessagesText = lastUserMessagesTextElement ? lastUserMessagesTextElement.innerText : "";
-
-        const lastMessageId = lastUserMessagesTextElement ? lastUserMessagesTextElement.id : null;
-        //console.log('lastuserMessagesText', lastuserMessagesText)
-
-        return lastMessageId
-
+        if(lastUserMessage)
+        {    const lastUserMessagesTextElement = lastUserMessage.querySelector(".chat-message div:last-child"); // Last child div with text
+            //console.log('lastUserMessagesTextElement', lastUserMessagesTextElement)
+            const lastuserMessagesText = lastUserMessagesTextElement ? lastUserMessagesTextElement.innerText : "";
+            const lastMessageId = lastUserMessagesTextElement ? lastUserMessagesTextElement.id : null;
+            //console.log('lastuserMessagesText', lastuserMessagesText)
+            return lastMessageId
+        }
+        return null
     }
     function getQuestionID(){
     // this function call is used to get the question id
@@ -512,10 +613,14 @@ document.addEventListener("DOMContentLoaded", () => {
     sendButton.addEventListener("click", () => {
         if (!inputField.value.trim()) return;  // Prevent sending empty messages
 
+        /*if (isFirstUserInput) {
+            isFirstUserInput = false;
+            return; // Don't proceed to handleResponse
+        }*/
+        //changing id of user message.
         lastMessageId = getQuestionID()
-          //Extract the id from b_
+        //Extract the id from b_
         id = lastMessageId.substring(2,lastMessageId.length)
-        //console.log('id',id)
 
         const userMessage = document.createElement("div");
         userMessage.classList.add("chat-message", "user-message");
@@ -558,7 +663,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function saveUserData(){
 
        // Check if a user response exists for each perception_AN key
-       // Build JSON array of message data
+       // Build JSON array of message data from user messages
         const messagesJSON = [];
         for (const key in questionBank) {
             const userResponseElement = document.getElementById(key);
@@ -573,7 +678,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log(`No user input for ${key}`);
                 messagesJSON.push({
                    id: key,
-                    value: 'NA'
+                   value: 'NA'
                 });
             }
         }
@@ -598,43 +703,8 @@ document.addEventListener("DOMContentLoaded", () => {
     endButton.addEventListener("click", () => {
         /*TODO: The format to save the data*/
         saveUserData();
-        return
-        const messages = Array.from(document.querySelectorAll("#chat-box .chat-message")).map((message) => {
-            const isBotMessage = message.classList.contains("bot-message"); // Check if it's a bot message
-            if (isBotMessage){
-                const textElement = message.querySelector(".chat-message-text div:last-child"); // Target last div inside chat-message-text
-                msg = {
-                    type: isBotMessage ? "bot" : "user",        // Determine message type
-                    text: textElement.innerText, // Get message text
-                    id: isBotMessage && textElement ? textElement.id : null  // Get id if it's a bot message
-                };
-                return msg;
-
-            }
-            else{
-                const isUserMessage = message.classList.contains("user-message"); // Check if it's a user message
-                const textElement = message.querySelector(".chat-message-text")//.innerText//message.querySelector(".chat-message user-message div:chat-message-text")
-                msg = {
-                    type: isUserMessage ? "user" : "bot",        // Determine message type
-                    text: textElement.innerText, // Get message text
-                    id: isUserMessage && textElement ? textElement.id : null  // Get id if it's a bot message
-                };
-                return msg;
-            }
-        });
-
-        const jsonData = {
-            action: "end",
-            timestamp: Date.now(),
-            summary: "Chat session ended by the user.",
-            messages: messages
-        };
-
-        const endData = JSON.stringify(jsonData);
-        //console.log("Is Valid JSON", isValidJSON(endData), endData);
-
-        window.parent.postMessage(endData, "*");
         inputField.value = "";
+        //return
     });
 
     function isValidJSON(str) {

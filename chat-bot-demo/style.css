@@ -103,6 +103,61 @@ body {
     transform: scale(1.05);
 }
 
+/*tooltip for the slider control*/
+.slider-tooltip {
+      position: relative;
+      top: -45px;
+      width: 10px;
+      text-align: center;
+      transform: translateX(50px);
+      background: #faa;
+      color: #fff;
+      padding: 4px 8px;
+      font-size: 12px;
+      border-radius: 4px;
+      white-space: nowrap;
+      pointer-events: none;
+      display: none; /*hidden initially*/
+      border: 1px solid red;
+}
+
+.slider-container:hover .slider-tooltip,
+.slider-container:active .slider-tooltip {
+      display: block;
+    }
+/*to show them all in one line*/
+.slider-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px; /* spacing between spans and slider */
+}
+
+.slider-inner-wrapper {
+  position: relative;
+   padding: 0; /* Removes all padding */
+  flex-grow: 1; /* allow slider to stretch */
+}
+/* to modify the default slider*/
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: red; /* red thumb */
+  cursor: pointer;
+  margin-top: -5px; /* aligns thumb vertically with track */
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  background: #faa;
+  border-radius: 3px;
+}
+
+
+/**/
+
 .user-message {
     align-self: flex-end; /* Aligns user messages to the right */
 }
