@@ -3,6 +3,7 @@
 */
 
 const categoryOptions = {
+    practice: ["ja","nee"],
     context_company: ["Alleen", "Met vrienden" ,"Met familie","Met mijn partner", "Met medestudenten", "Met collega's", "Met kennissen", "Met vreemden/anderen"],
     context_location:["Thuis","Onderweg","School/universiteit","Openbare locatie","Werk","Bij vriend(en)/familie thuis"],
     context_activity: ["Alleen studeren","Met anderen studeren", "Een les volgen", "Onderweg", "Werken", "In een gesprek", "Ontspannen, e.g., zitten/liggen, gamen, lezen", "Sporten", "Aan het eten", "Huishoudelijk klusje", "Anders"],
@@ -29,72 +30,19 @@ const categoryOptions = {
     perception_SP: ["helemaal oneens","oneens", "neutraal", "eens","helemaal eens"],
     perception_AN: null, //No options handled by slider
     welcome: null, // No options for welcome
-    thankyou: null,
-    end: ["ja", "nee"]
+    end: ["ja", "nee"],
+    no_practice:["ja", "nee"]
     };
 const questionBank = {
         welcome: [
-            //"Hello! Welcome to our chat. Let's start by checking in on how you're feeling today. 😊",
-            //"Hello! Welcome to our chat. 😊",
-            "Hey hallo student, goed je weer te zien!",
-            "Hey hallo student, goed je weer te zien 😊",
-            "Hey hallo student, dank voor je reactie 😊",
-            "Hey hallo student, dank voor je reactie!",
-            "Hallo student, de onderzoekers zullen het zeker waarderen dat je weer reageert!",
-            "Hoi student, de onderzoekers zullen het zeker waarderen dat je weer reageert!",
-            "Hallo student, de onderzoekers zullen het zeker waarderen dat je weer reageert 😊",
-            "Hoi student, de onderzoekers zullen het zeker waarderen dat je weer reageert 😊",
-            "Hey hallo! Na ons gesprekje weer zullen de onderzoekers een nog beter beeld hebben van jullie welbevinden. Top 😊",
-            "Hey hallo! Na ons gesprekje weer zullen de onderzoekers een nog beter beeld hebben van jullie welbevinden. Top!",
-            "Ha student, na ons gesprekje weer zullen de onderzoekers een nog beter beeld hebben van jullie welbevinden. Top 😊",
-            "Ha student, na ons gesprekje zullen de onderzoekers een nog beter beeld hebben van jullie welbevinden. Top!",
-            "Hey hallo je bent er weer, wat fijn 😊",
-            "Hey hallo je bent er weer, wat fijn!",
-            "Hey, je bent weer terug! Fijn dat je er bent 😊",
-            "Ha! Dankjewel voor je reactie 😊",
--           "Hey hallo, bedankt voor je snelle reactie!",
-            "Hey hallo, bedankt voor je snelle reactie 😊",
-            "Hoi, je reactie zal de onderzoekers zeker goed doen 😊",
-            "Hallo daar, de onderzoekers zullen heel blij zijn dat je reageert 😊",
-            "Hallo daar, de onderzoekers zullen heel blij zijn dat je reageert!",
-            "Hallo daar, goed je weer te zien!",
-            "Hallo daar, goed je weer te zien 😊",
-            "Hallo daar, de onderzoekers zullen je reactie fijn vinden!",
-            "Hallo daar, de onderzoekers zullen je reactie fijn vinden 😊",
-            "Hallo daar, fijn dat je weer met mij de vragen wilt doornemen 😊",
-            "Hallo daar, fijn dat je weer met mij de vragen wilt doornemen!",
-            "Hey hallo, daar ben je weer! Na ons gesprekje zullen de onderzoekers een duidelijker beeld van jullie situatie hebben. Top 😊",
-            "Hey, daar ben je weer 😊 Na ons gesprekje zullen de onderzoekers een duidelijker beeld van jullie situatie hebben. Dat is mooi!",
-            "Hoi student, wat goed dat je weer reageert 😊",
-            "Hoi student, wat goed dat je weer reageert!",
-            "Hey student, goed je weer te zien! Samen komen we door al die belangrijke vragen heen 😊",
-            "Hey student, goed je weer te zien 😊 Samen komen we door al die belangrijke vragen heen!",
-            "Hey hallo, dank voor je reactie! Samen zullen we de vragen doorlopen, gaat goed komen toch ;",
-            "Hoi student, dank voor je reactie! Samen zullen we de vragen doorlopen, gaat wel lukken toch ;"
+            "Hallo student, ik ben chatbot Whaby! Ik zal de komende week 10 keer per dag vragen hoe het met je welbevinden is, om te kijken hoe het met je gaat en zodat de onderzoekers weten hoe ze studenten verder kunnen helpen ?? Je antwoorden worden op dezelfde, beveiligde manier en op dezelfde beveiligde plek opgeslagen als de andere vragenlijsten in LimeSurvey. De vragen die ik je zal stellen zullen voornamelijk gesloten vragen zijn waarbij je een antwoordoptie kunt selecteren om naar mij te sturen, en deze zullen elke keer hetzelfde zijn. Om je huidige welbevinden zo objectief mogelijk te meten, kan ik niet reageren op je antwoorden binnen deze vragenlijsten ??"
         ],
+        practice: [
+        "Zou je de dagboekvragenlijst alvast met mij willen oefenen?"
+        ],
+
         instructions: [
-            //"instructions",
-            //"instructions 2",
-            "Ik zal je mijn vragen over je welbevinden nu sturen. Denk terug aan het moment vlak voordat je de notificatie zag.",
-            "Ik zal je nu de vragen over je welbevinden sturen. Denk hierbij even goed terug aan het moment vlak voordat je de notificatie zag.",
-            "Hier komen de vragen over je welbevinden! Denk eerst nog goed terug aan het moment vlak voordat je de notificatie zag.",
-            "De vragen over je welbevinden komen er nu aan! Denk eerst nog wel goed terug aan het moment vlak voordat je de notificatie zag.",
-            "Ik ga je nu de vragen over je welbevinden sturen. Probeer terug te denken aan hoe je je voelde vlak voordat je de notificatie zag.",
-            "Ik stuur je nu de vragen over je welbevinden. Haal weer even terug in je gedachten het moment vlak voordat je de notificatie zag. ",
-            "De vragen over je welbevinden komen eraan! Probeer even het moment terug te halen vlak voordat je de notificatie zag. ",
-            "Laat ik je de vragen over je welbevinden sturen! Denk even terug aan het moment vlak voordat je de notificatie zag. ",
-            "Hier komen de vragen over je welbevinden! Probeer aan het moment vlak voor de notificatie na te denken. ",
-            "Hier gaan we, de vragen over je welbevinden komen eraan! Denk eerst nog goed terug aan het moment vlak voordat je de notificatie zag. ",
-            "Hier komen de vragen over je welbevinden. Probeer je het moment vlak voor de notificatie te herinneren. ",
-            "De vragen over je welbevinden zijn onderweg! Sta eerst goed stil bij het moment vlak voordat je de notificatie zag.",
-            "We gaan door met de vragen over je welbevinden. Probeer je het moment vlak voor je notificatie zag goed te herinneren. ",
-            "Hier komen de vragen over je welbevinden! Haal het moment vlak voordat de melding verscheen nog even terug in gedachten.",
-            "Hier komen de vragen over je welbevinden! Probeer het moment vlak voordat je de notificatie zag nog even terug te halen.",
-            "Tijd voor de vragen over je welbevinden! Neem een moment om terug te denken aan het moment vlak voordat je de melding zag.",
-            "De vragen over je welbevinden komen eraan! Breng het moment vlak voordat de notificatie verscheen nog even in gedachten.",
-            "De vragen over je welbevinden zijn er bijna! Denk nog even goed terug aan het moment vlak voordat je de notificatie zag.",
-            "Ik stuur je zo de vragen over je welbevinden. Neem een moment om terug te denken aan het moment vlak voordat je de notificatie zag.",
-            "Hier gaan we! De vragen over je welbevinden komen eraan. Denk nog even terug aan het moment vlak voordat je de notificatie zag."
+            "Mooi. Ik zal je mijn vragen over je welbevinden nu sturen. Denk terug aan het moment vlak voordat je de notificatie zag."
         ],
         context_company: [
             "Met wie was je?"
@@ -155,47 +103,18 @@ const questionBank = {
         perception_AN3: ["Geef je indruk weer van het vragenlijstsysteem"],
         perception_AN4: ["Geef je indruk weer van het vragenlijstsysteem"],
 
-        thankyou: ["Dit waren alle vragen voor nu. Dankjewel voor het invullen 😊",
-                    "Dit waren alle vragen voor nu. Dankjewel voor het invullen!",
-                    "Dat was de laatste vraag voor nu, top gedaan!",
-                    "Dat was de laatste vraag voor nu, top gedaan 😊",
-                    "Dat was de vragenlijst alweer! Dankjewel voor het invullen 😊",
-                    "Dat was de vragenlijst alweer! Fijn dat je zo je best doet 😊",
-                    "Dat was het voor nu, we zijn klaar 😊 Dankjewel weer!",
-                    "Dat was het voor nu, we zijn klaar! Dankjewel weer 😊",
-                    "We zijn er doorheen, fijn dat je weer even van je hebt laten horen 😊",
-                    "We zijn er doorheen, fijn dat je weer even van je hebt laten horen!",
-                    "Alle vragen zijn weer beantwoord, dankjewel voor je tijd!",
-                    "Alle vragen zijn weer beantwoord, dankjewel voor je tijd 😊",
-                    "We hebben alle vragen beantwoord, bedankt voor je hulp weer!",
-                    "We hebben alle vragen beantwoord, bedankt voor je hulp weer 😊",
-                    "En daarmee zijn we klaar, dankjewel voor je input!",
-                    "En daarmee zijn we klaar, dankjewel voor je input 😊",
-                    "Dat was 'm voor nu, fijn dat je weer zo open was!",
-                    "Dat was 'm voor nu, fijn dat je weer zo open was 😊",
-                    "We hebben alles weer gehad 😊 top dat je ze hebt ingevuld!",
-                    "We hebben alles weer gehad, top dat je ze hebt ingevuld 😊",
-                    "En daarmee zijn we klaar 😊 Goed dat je je zo inzet voor dit onderzoek, ga zo door!",
-                    "En daarmee zijn we klaar! Goed dat je je zo inzet voor dit onderzoek, ga zo door 😊",
-                    "Dat was het weer voor nu, bedankt voor je tijd en input!",
-                    "Dat was het weer voor nu, bedankt voor je tijd en input 😊",
-                    "Alles is weer ingevuld, dankjewel voor je openheid!",
-                    "Alles is weer ingevuld, dankjewel voor je openheid 😊",
-                    "En dat was het! Dankjewel voor je tijd en moeite, zo kan je input goed gebruikt worden 😊",
-                    "En dat was het 😊 dankjewel voor je tijd en moeite, zo kan je input goed gebruikt worden!",
-                    "Zo dat was 'm alweer 😊 Fijn dat je zo hebt meegwerkt!",
-                    "Zo dat was 'm alweer! Fijn dat je zo hebt meegwerkt 😊",
-                    "Zo dat was 'm alweer, goed gedaan! Bedankt voor je tijd 😊",
-                    "Goed bezig, we zijn klaar! Dankjewel voor je input weer 😊",
-                    "Goed bezig, we zijn klaar 😊 Dankjewel voor je input weer!",
-                    "En we zijn weer aan het eind gekomen van de vragenlijst! Mooi gedaan, dankjewel 😊",
-                    "En we zijn weer aan het eind gekomen van de vragenlijst 😊 Mooi gedaan, dankjewel!"
+        final: ["We zijn door de oefen dagboekvragenlijst heen. Mocht je toch nog vragen hebben, kun je contact opnemen met [e-mailaddress]. Klik op 'submit' als je morgen graag wilt starten."
         ],
-        end: ["Wil Je antwoorden zijn opgeslagen? en tot de volgende keer 😊"]
+        end: ["Bedankt voor je antwoorden. Wil Je antwoorden zijn opgeslagen? <br> Vanaf morgen zul je regelmatig notificaties krijgen om een vragenlijstje in te vullen. :-)"
+        ],
+        //no_practice:["Geen probleem 😌 Mocht je toch nog vragen hebben, kun je altijd contact opnemen met [e-mailaddress]. Klik op 'submit' als je morgen graag wilt starten."]
+        no_practice:["Geen probleem ?? Mocht je toch nog vragen hebben, kun je altijd contact opnemen met [e-mailaddress]. Wil Je antwoorden zijn opgeslagen? <br>"]
     };
 
-const conversationFlow = [
+let conversationFlow = [
         { category: "welcome" },
+        { category: "practice" },
+
         { category: "instructions" },
         { category: "context_company" },
         { category: "context_location" },
@@ -216,13 +135,11 @@ const conversationFlow = [
         { category: "social_wellbeing_SO3" },
 
 
-        { category: "experience" },
-
         { category: "engagement_burden" },
         { category: "engagement_disclosure" },
         { category: "perception_SP"},
         { category: "perception_AN"},
-        { category: "thankyou" },
+        { category: "final" },
         { category: "end" }
     ];
 
@@ -384,6 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function displayQuestion(main_category, category){
     // Get random questions from the category
         const questions = questionBank[category];
+        //console.log('questions', questions, questions.length)
         if (!questions || questions.length === 0) return; // Safety check
 
         const selectedQuestions = [];
@@ -394,8 +312,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
+
+
         showTypingIndicator(() => { //this would use ... to be displayed
             let questionText = getRandomQuestion(category);
+            //make the div for question
             const botMessage = document.createElement("div");
             botMessage.classList.add("chat-message", "bot-message");
             //modifying category to make bot message unique
@@ -409,7 +330,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                 </div>`;
 
             messageList.appendChild(botMessage);
-            //console.log("category,messageList", category,messageList)
 
 
 
@@ -436,15 +356,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 messageList.appendChild(optionsContainer);
-
-                //inputField.disabled = false
-                //console.log('optionsContainer', optionsContainer)
             }
             else if (main_category === "perception_AN")
             {
 
                 // Disable text input
                 inputField.disabled = true;
+
                 //choose the slider value
                 let [min,max] = chooseSliderValue(category)
 
@@ -483,14 +401,18 @@ document.addEventListener("DOMContentLoaded", () => {
                  // Initial tooltip position
                 updateTooltip(slider,tooltip,true); //true => executed for the first time
 
-                // On slider (submission)
+                // On slider change (submission)
                 slider.onmouseup = function() {
                     handleSlider(sliderContainer)
                 }
             }
-
             //todo: do not take the input when..
-            if(category == "welcome" || category == "instructions" || category == "thankyou")
+            if(category == "no_practice")
+            {
+                endChat();
+                //Here I have to load the last message
+            }
+            else if (category == "instructions" || category == "final")
             {
                 askNextQuestion();
             }
@@ -499,8 +421,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Auto-scroll to latest message
                 messageList.scrollTop = messageList.scrollHeight;
             }
+
         }); // showTypingIndicator(()
     }
+
     function handleSlider(sliderContainer){
         // Get slider and value span elements
         const slider = sliderContainer.querySelector("#responseSlider");
@@ -511,7 +435,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const responseValue = slider.value;
         handleSliderInput(responseValue, slider)
         // Remove the slider container and related contents from the chat once the user finalizes the value
-
         if (sliderContainer){
             slider.remove();
             valueSpan1.remove();
@@ -521,6 +444,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Proceed to the next step
         handleResponse();
     }
+
     function handleSliderInput(responseValue, slider){
         //it updates the slider response
         const answerID = getAnswerID();
@@ -555,15 +479,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function handleUserOption(selectedOption,optionButton, category) {
         // Create a user message bubble with the selected option
-        //console.log('optionButton',optionButton)
+        //here category is equal to the questionID received below, so maybe optimization needed
         lastQuestionid = getQuestionID()
         //Extract the id from b_
-        id = lastQuestionid.substring(2,lastQuestionid.length)
+        optionid = lastQuestionid.substring(2,lastQuestionid.length)
 
 
         const userMessage = document.createElement("div");
         userMessage.classList.add("chat-message", "user-message");
-        userMessage.innerHTML = `<div class="chat-message-text" id =  ${id}>${optionButton.value}</div>`;
+        userMessage.innerHTML = `<div class="chat-message-text" id =  ${optionid}>${optionButton.value}</div>`;
         messageList.appendChild(userMessage);
         //console.log('messageList',messageList)
 
@@ -571,20 +495,21 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".chat-options").forEach(element => element.remove());
 
         // Proceed to the next step
-        if(id == "end" & selectedOption == "nee")
+        if(category == "practice" && optionButton.value == "nee" )
         {
-            if(selectedOption == "nee")
-            {
-                console.log('nee selected')
-            }
+            flow = [
+                { category: "welcome" },
+                { category: "practice" },
+                { category: "no_practice" },
+            ]
+            conversationFlow = flow
+            conversationStep = 2
         }
-        else
-            handleResponse();
+        handleResponse();
     }
 
     function handleResponse() {
-        console.log('MessageList in HandleResponse', messageList)
-
+        console.log("Message List", conversationStep, conversationFlow.length, messageList)
         if (conversationStep < conversationFlow.length) {
             setTimeout(() => {
                 inputField.disabled == true
@@ -667,6 +592,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function endChat() {
+        console.log('end chat')
         inputField.disabled = true;
         sendButton.disabled = true;
         endButton.click();
