@@ -29,8 +29,8 @@ const categoryOptions = {
     perception_SP: ["helemaal oneens","oneens", "neutraal", "eens","helemaal eens"],
     perception_AN: null, //No options handled by slider
     welcome: null, // No options for welcome
-    thankyou: null,
-    end: ["ja", "nee"]
+    thankyou: ["Tot ziens"],
+    end: null//["ja", "nee"]
     };
 const questionBank = {
         welcome: [
@@ -191,7 +191,7 @@ const questionBank = {
                     "En we zijn weer aan het eind gekomen van de vragenlijst! Mooi gedaan, dankjewel 😊",
                     "En we zijn weer aan het eind gekomen van de vragenlijst 😊 Mooi gedaan, dankjewel!"
         ],
-        end: ["Wil Je antwoorden zijn opgeslagen? en tot de volgende keer 😊"]
+        end: ["Je antwoorden zijn opgeslagen. Tot de volgende keer."]//"Wil Je antwoorden zijn opgeslagen? en tot de volgende keer 😊"]
     };
 
 const conversationFlow = [
@@ -490,9 +490,13 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             //todo: do not take the input when..
-            if(category == "welcome" || category == "instructions" || category == "thankyou")
+            if(category == "welcome" || category == "instructions")
             {
                 askNextQuestion();
+            }
+            else if(category == "end")
+            {
+                handleResponse()
             }
             else
             {
@@ -583,7 +587,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function handleResponse() {
-        console.log('MessageList in HandleResponse', messageList)
+        console.log('MessageList in HandleResponse', conversationStep , conversationFlow.length, messageList)
 
         if (conversationStep < conversationFlow.length) {
             setTimeout(() => {

@@ -30,8 +30,8 @@ const categoryOptions = {
     perception_SP: ["helemaal oneens","oneens", "neutraal", "eens","helemaal eens"],
     perception_AN: null, //No options handled by slider
     welcome: null, // No options for welcome
-    end: ["ja", "nee"],
-    no_practice:["ja", "nee"]
+    no_practice:["Tot ziens"],
+    final: ["Tot ziens"]
     };
 const questionBank = {
         welcome: [
@@ -103,12 +103,14 @@ const questionBank = {
         perception_AN3: ["Geef je indruk weer van het vragenlijstsysteem"],
         perception_AN4: ["Geef je indruk weer van het vragenlijstsysteem"],
 
-        final: ["We zijn door de oefen dagboekvragenlijst heen. Mocht je toch nog vragen hebben, kun je contact opnemen met [e-mailaddress]. Klik op 'submit' als je morgen graag wilt starten."
+        final: ["We zijn door de oefen dagboekvragenlijst heen. Mocht je toch nog vragen hebben, kun je contact opnemen met [e-mailaddress]. Klik op 'Tot ziens' als je morgen graag wilt starten."
         ],
-        end: ["Bedankt voor je antwoorden. Wil Je antwoorden zijn opgeslagen? <br> Vanaf morgen zul je regelmatig notificaties krijgen om een vragenlijstje in te vullen. :-)"
+        no_practice:["Geen probleem 😌 Mocht je toch nog vragen hebben, kun je altijd contact opnemen met [e-mailaddress]. Klik op 'Tot ziens' als je morgen graag wilt starten."
         ],
-        //no_practice:["Geen probleem 😌 Mocht je toch nog vragen hebben, kun je altijd contact opnemen met [e-mailaddress]. Klik op 'submit' als je morgen graag wilt starten."]
-        no_practice:["Geen probleem ?? Mocht je toch nog vragen hebben, kun je altijd contact opnemen met [e-mailaddress]. Wil Je antwoorden zijn opgeslagen? <br>"]
+        no_practice_end: ["Je antwoorden zijn opgeslagen. Vanaf morgen zul je regelmatig notificaties krijgen om een vragenlijstje in te vullen. Tot dan!"
+        ],
+        practice_end: ["Bedankt voor je antwoorden. Vanaf morgen zul je regelmatig notificaties krijgen om een vragenlijstje in te vullen. Tot dan!"
+        ]
     };
 
 let conversationFlow = [
@@ -140,7 +142,7 @@ let conversationFlow = [
         { category: "perception_SP"},
         { category: "perception_AN"},
         { category: "final" },
-        { category: "end" }
+        { category: "practice_end" }
     ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -407,12 +409,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
             //todo: do not take the input when..
-            if(category == "no_practice")
+            if(category == "no_practice_end" || category == "practice_end")
             {
                 endChat();
-                //Here I have to load the last message
             }
-            else if (category == "instructions" || category == "final")
+            else if (category == "instructions")// || category == "final")
             {
                 askNextQuestion();
             }
@@ -501,6 +502,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { category: "welcome" },
                 { category: "practice" },
                 { category: "no_practice" },
+                {category: "no_practice_end"}
             ]
             conversationFlow = flow
             conversationStep = 2
@@ -509,7 +511,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function handleResponse() {
-        console.log("Message List", conversationStep, conversationFlow.length, messageList)
+        console.log("Message List", conversationStep, conversationFlow.length, conversationFlow)
         if (conversationStep < conversationFlow.length) {
             setTimeout(() => {
                 inputField.disabled == true
