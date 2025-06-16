@@ -29,7 +29,7 @@ const categoryOptions = {
     perception_SP: ["helemaal oneens","oneens", "neutraal", "eens","helemaal eens"],
     perception_AN: null, //No options handled by slider
     welcome: null, // No options for welcome
-    thankyou: ["Tot ziens"],
+    submit: ["Tot ziens"],
     end: null//["ja", "nee"]
     };
 const questionBank = {
@@ -137,23 +137,23 @@ const questionBank = {
                     "De vragen die ik je zo stuur richten zich op hoe jij het invullen van de huidige vragenlijst hebt ervaren.",
                     "De komende vragen gaan in op jouw ervaringen met het invullen van de huidige vragenlijst."],
 
-        engagement_burden1: ["Deze vragenlijst invullen kostte moeite?"],
-        engagement_burden2: ["Deze notificatie stoorde mij?"],
+        engagement_burden1: ["Kostte het invullen van deze vragenlijst moeite?"],
+        engagement_burden2: ["Stoorde deze notificatie jou?"],
 
         engagement_disclosure1:["Ik voelde dat ik persoonlijk kon zijn in dit  vragenlijstsysteem"],
-        engagement_disclosure2: ["Ik voelde me op mijn gemak om persoonlijke informatie te delen in dit vragenlijstsysteem"],
-        engagement_disclosure3: ["Het was makkelijk om persoonlijke informatie te delen in dit vragenlijstsysteem"],
-        engagement_disclosure4: ["Ik voelde dat ik open kon zijn in dit vragenlijstsysteem"],
+        engagement_disclosure2: ["Voelde je je op je gemak om persoonlijke informatie te deIen in  dit vragenlijstsysteem?"],
+        engagement_disclosure3: ["Was het gemakkelijk om persoonlijke informatie te delen in dit vragenlijstsysteem?"],
+        engagement_disclosure4: ["Voelde je dat je open kon zijn in dit vragenlijstsysteem?"],
 
-        perception_SP1: ["Het contact met het vragenlijstsysteem voelde als menselijk contact"],
-        perception_SP2: ["Het contact met het vragenlijstsysteem voelde persoonlijk"],
-        perception_SP3: ["Het contact met het vragenlijstsysteem voelde sociaal"],
-        perception_SP4: ["Het contact met het vragenlijstsysteem voelde warm"],
+        perception_SP1: ["Voelde het contact met het vragenlijstsysteem als menselijk contact?"],
+        perception_SP2: ["Voelde het contact met het vragenlijstsysteem persoonlijk?"],
+        perception_SP3: ["Voelde het contact met het vragenlijstsysteem sociaal?"],
+        perception_SP4: ["Voelde het contact met het vragenlijstsysteem warm?"],
 
-        perception_AN1: ["Geef je indruk weer van het vragenlijstsysteem"],
-        perception_AN2: ["Geef je indruk weer van het vragenlijstsysteem"],
-        perception_AN3: ["Geef je indruk weer van het vragenlijstsysteem"],
-        perception_AN4: ["Geef je indruk weer van het vragenlijstsysteem"],
+        perception_AN1: ["Geef je indruk weer van het vragenlijstsysteem:"],
+        perception_AN2: ["Geef je indruk weer van het vragenlijstsysteem:"],
+        perception_AN3: ["Geef je indruk weer van het vragenlijstsysteem:"],
+        perception_AN4: ["Geef je indruk weer van het vragenlijstsysteem:"],
 
         thankyou: ["Dit waren alle vragen voor nu. Dankjewel voor het invullen 😊",
                     "Dit waren alle vragen voor nu. Dankjewel voor het invullen!",
@@ -191,6 +191,7 @@ const questionBank = {
                     "En we zijn weer aan het eind gekomen van de vragenlijst! Mooi gedaan, dankjewel 😊",
                     "En we zijn weer aan het eind gekomen van de vragenlijst 😊 Mooi gedaan, dankjewel!"
         ],
+        submit: ["Klik 'Tot ziens' als je je antwoorden wilt versturen."],
         end: ["Je antwoorden zijn opgeslagen. Tot de volgende keer."]//"Wil Je antwoorden zijn opgeslagen? en tot de volgende keer 😊"]
     };
 
@@ -222,8 +223,8 @@ const conversationFlow = [
         { category: "engagement_disclosure" },
         { category: "perception_SP"},
         { category: "perception_AN"},
-        { category: "thankyou" },
-        { category: "end" }
+        { category: "submit" },
+        { category: "end"}
     ];
 
 document.addEventListener("DOMContentLoaded", () => {

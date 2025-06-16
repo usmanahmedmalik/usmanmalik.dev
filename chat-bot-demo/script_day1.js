@@ -3,7 +3,7 @@
 */
 
 const categoryOptions = {
-    practice: ["ja","nee"],
+    practice: ["nee","ja"],
     context_company: ["Alleen", "Met vrienden" ,"Met familie","Met mijn partner", "Met medestudenten", "Met collega's", "Met kennissen", "Met vreemden/anderen"],
     context_location:["Thuis","Onderweg","School/universiteit","Openbare locatie","Werk","Bij vriend(en)/familie thuis"],
     context_activity: ["Alleen studeren","Met anderen studeren", "Een les volgen", "Onderweg", "Werken", "In een gesprek", "Ontspannen, e.g., zitten/liggen, gamen, lezen", "Sporten", "Aan het eten", "Huishoudelijk klusje", "Anders"],
@@ -25,9 +25,9 @@ const categoryOptions = {
     social_wellbeing_SO2: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
     social_wellbeing_SO3: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
 
-    engagement_burden: ["helemaal oneens","oneens","neutraal", "eens","helemaal eens"],
-    engagement_disclosure: ["helemaal oneens","oneens", "neutraal", "eens","helemaal eens"],
-    perception_SP: ["helemaal oneens","oneens", "neutraal", "eens","helemaal eens"],
+    engagement_burden: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    engagement_disclosure: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    perception_SP: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
     perception_AN: null, //No options handled by slider
     welcome: null, // No options for welcome
     no_practice:["Tot ziens"],
@@ -35,7 +35,7 @@ const categoryOptions = {
     };
 const questionBank = {
         welcome: [
-            "Hallo student, ik ben chatbot Whaby! Ik zal de komende week 10 keer per dag vragen hoe het met je welbevinden is, om te kijken hoe het met je gaat en zodat de onderzoekers weten hoe ze studenten verder kunnen helpen ?? Je antwoorden worden op dezelfde, beveiligde manier en op dezelfde beveiligde plek opgeslagen als de andere vragenlijsten in LimeSurvey. De vragen die ik je zal stellen zullen voornamelijk gesloten vragen zijn waarbij je een antwoordoptie kunt selecteren om naar mij te sturen, en deze zullen elke keer hetzelfde zijn. Om je huidige welbevinden zo objectief mogelijk te meten, kan ik niet reageren op je antwoorden binnen deze vragenlijsten ??"
+            "Hallo student, ik ben chatbot Whaby! Ik zal de komende week, vanaf morgen, 10 keer per dag vragen hoe het met je welbevinden is, om te kijken hoe het met je gaat en zodat de onderzoekers weten hoe ze studenten verder kunnen helpen 😊 Ik zal je deze op willekeurige momenten tussen 07:30 en 22:30 sturen via een SMS bericht. Om dit bericht niet te missen, lijkt het mij verstandig om het geluid van je meldingen aan te zetten. Reageer op deze vragen zo eerlijk mogelijk, passend bij het moment, en denk niet te lang na. Er bestaan geen foute antwoorden! Reageren op de vragen duurt ongeveer 2 minuten, en na 15 minuten moet ik weer weg. Voor je omgeving kan het soms vervelend zijn wanneer je midden in een gesprek een notificatie krijgt waar je op moet reageren. Je kunt dat uitleggen dat je aan een onderzoek meedoet en het belangrijk is dat je binnen 15 minuten op mij reageert. Zorg er wel voor dat het invullen anoniem blijft en de ander geen invloed heeft op jouw antwoorden. Ik zou dan vragen of het goed is als je even 2 minuutjes even ergens anders gaat zitten. Alleen wanneer je echt niet gestoord kunt worden (je bent bijvoorbeeld in het verkeer of maakt een tentamen), kun je het geluid van binnenkomende meldingen uitzetten. Zet deze wel weer aan direct zodra het weer kan 😅 De dag na deze 7 dagen, krijg je een SMS bericht voor de evaluatie. Deze duurt 10 minuten om in te vullen. Wees hierbij ook zo eerlijk mogelijk; met jouw input kunnen we onderzoek naar welbevinden verbeteren.  Al je antwoorden worden op dezelfde, beveiligde manier en op dezelfde beveiligde plek opgeslagen als de andere vragenlijsten in LimeSurvey. De vragen die ik je zal stellen zullen gesloten vragen zijn waarbij je een antwoordoptie kunt selecteren om naar mij te sturen, en deze zullen elke keer hetzelfde zijn. Om je huidige welbevinden zo objectief mogelijk te meten, kan ik niet reageren op je antwoorden binnen deze vragenlijsten 😞"
         ],
         practice: [
         "Zou je de dagboekvragenlijst alvast met mij willen oefenen?"
@@ -74,34 +74,25 @@ const questionBank = {
         social_wellbeing_SO2: ["Hoe tevreden met je persoonlijke relaties voel je je?"],
         social_wellbeing_SO3: ["Hoe sterk voel je dat je tot een groep behoort?"],
 
-        experience: ["De volgende vragen gaan over je ervaringen met het invullen van de huidige vragenlijst.",
-                    "De vragen die ik zo stuur gaan over je ervaringen met het invullen van de huidige vragenlijst.",
-                    "De vragen die ik je nu nog stuur gaan over hoe je het invullen van de huidige vragenlijst hebt ervaren.",
-                    "De volgende vragen richten zich op jouw ervaringen met het invullen van de huidige vragenlijst.",
-                    "De aankomende vragen gaan over jouw ervaring met het invullen van de huidige vragenlijst.",
-                    "De vragen die ik je nu nog zal sturen, gaan over jouw ervaringen met het invullen van de huidige vragenlijst.",
-                    "De aankomende vragen hebben betrekking op jouw ervaring met het invullen van de huidige vragenlijst.",
-                    "De volgende vragen gaan over hoe je het invullen van de huidige vragenlijst hebt ervaren.",
-                    "De vragen die ik je zo stuur richten zich op hoe jij het invullen van de huidige vragenlijst hebt ervaren.",
-                    "De komende vragen gaan in op jouw ervaringen met het invullen van de huidige vragenlijst."],
+        experience: ["De volgende vragen gaan over je ervaringen gedurende deze vragenlijst."],
 
-        engagement_burden1: ["Deze vragenlijst invullen kostte moeite?"],
-        engagement_burden2: ["Deze notificatie stoorde mij?"],
+        engagement_burden1: ["Kostte het invullen van deze vragenlijst moeite?"],
+        engagement_burden2: ["Stoorde deze notificatie jou?"],
 
         engagement_disclosure1:["Ik voelde dat ik persoonlijk kon zijn in dit  vragenlijstsysteem"],
-        engagement_disclosure2: ["Ik voelde me op mijn gemak om persoonlijke informatie te delen in dit vragenlijstsysteem"],
-        engagement_disclosure3: ["Het was makkelijk om persoonlijke informatie te delen in dit vragenlijstsysteem"],
-        engagement_disclosure4: ["Ik voelde dat ik open kon zijn in dit vragenlijstsysteem"],
+        engagement_disclosure2: ["Voelde je je op je gemak om persoonlijke informatie te deIen in  dit vragenlijstsysteem?"],
+        engagement_disclosure3: ["Was het gemakkelijk om persoonlijke informatie te delen in dit vragenlijstsysteem?"],
+        engagement_disclosure4: ["Voelde je dat je open kon zijn in dit vragenlijstsysteem?"],
 
-        perception_SP1: ["Het contact met het vragenlijstsysteem voelde als menselijk contact"],
-        perception_SP2: ["Het contact met het vragenlijstsysteem voelde persoonlijk"],
-        perception_SP3: ["Het contact met het vragenlijstsysteem voelde sociaal"],
-        perception_SP4: ["Het contact met het vragenlijstsysteem voelde warm"],
+        perception_SP1: ["Voelde het contact met het vragenlijstsysteem als menselijk contact?"],
+        perception_SP2: ["Voelde het contact met het vragenlijstsysteem persoonlijk?"],
+        perception_SP3: ["Voelde het contact met het vragenlijstsysteem sociaal?"],
+        perception_SP4: ["Voelde het contact met het vragenlijstsysteem warm?"],
 
-        perception_AN1: ["Geef je indruk weer van het vragenlijstsysteem"],
-        perception_AN2: ["Geef je indruk weer van het vragenlijstsysteem"],
-        perception_AN3: ["Geef je indruk weer van het vragenlijstsysteem"],
-        perception_AN4: ["Geef je indruk weer van het vragenlijstsysteem"],
+        perception_AN1: ["Geef je indruk weer van het vragenlijstsysteem:"],
+        perception_AN2: ["Geef je indruk weer van het vragenlijstsysteem:"],
+        perception_AN3: ["Geef je indruk weer van het vragenlijstsysteem:"],
+        perception_AN4: ["Geef je indruk weer van het vragenlijstsysteem:"],
 
         final: ["We zijn door de oefen dagboekvragenlijst heen. Mocht je toch nog vragen hebben, kun je contact opnemen met [e-mailaddress]. Klik op 'Tot ziens' als je morgen graag wilt starten."
         ],
