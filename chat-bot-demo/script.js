@@ -30,12 +30,10 @@ const categoryOptions = {
     perception_AN: null, //No options handled by slider
     welcome: null, // No options for welcome
     submit: ["Tot ziens"],
-    end: null//["ja", "nee"]
+    end: null
     };
 const questionBank = {
         welcome: [
-            //"Hello! Welcome to our chat. Let's start by checking in on how you're feeling today. 😊",
-            //"Hello! Welcome to our chat. 😊",
             "Hey hallo student, goed je weer te zien!",
             "Hey hallo student, goed je weer te zien 😊",
             "Hey hallo student, dank voor je reactie 😊",
@@ -69,12 +67,10 @@ const questionBank = {
             "Hoi student, wat goed dat je weer reageert!",
             "Hey student, goed je weer te zien! Samen komen we door al die belangrijke vragen heen 😊",
             "Hey student, goed je weer te zien 😊 Samen komen we door al die belangrijke vragen heen!",
-            "Hey hallo, dank voor je reactie! Samen zullen we de vragen doorlopen, gaat goed komen toch ;",
-            "Hoi student, dank voor je reactie! Samen zullen we de vragen doorlopen, gaat wel lukken toch ;"
+            "Hey hallo, dank voor je reactie! Samen zullen we de vragen doorlopen, gaat goed komen toch ;)",
+            "Hoi student, dank voor je reactie! Samen zullen we de vragen doorlopen, gaat wel lukken toch ;)"
         ],
         instructions: [
-            //"instructions",
-            //"instructions 2",
             "Ik zal je mijn vragen over je welbevinden nu sturen. Denk terug aan het moment vlak voordat je de notificatie zag.",
             "Ik zal je nu de vragen over je welbevinden sturen. Denk hierbij even goed terug aan het moment vlak voordat je de notificatie zag.",
             "Hier komen de vragen over je welbevinden! Denk eerst nog goed terug aan het moment vlak voordat je de notificatie zag.",
@@ -192,7 +188,7 @@ const questionBank = {
                     "En we zijn weer aan het eind gekomen van de vragenlijst 😊 Mooi gedaan, dankjewel!"
         ],
         submit: ["Klik 'Tot ziens' als je je antwoorden wilt versturen."],
-        end: ["Je antwoorden zijn opgeslagen. Tot de volgende keer."]//"Wil Je antwoorden zijn opgeslagen? en tot de volgende keer 😊"]
+        end: ["Je antwoorden zijn opgeslagen. Tot de volgende keer."]
     };
 
 const conversationFlow = [
@@ -238,6 +234,17 @@ document.addEventListener("DOMContentLoaded", () => {
     let isFirstUserInput = true;    // Track if first user input has been sent
     let isSecondUserInput = true;    // Track if second user input has been sent
 
+    //Storing notification_time
+    now   = new Date(); // → a Date instance
+
+    const year = String(now.getFullYear()).slice(-2); // last 2 digits
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // 0-indexed
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = now.getHours(); // do not pad, as per example
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+
+        // Format the date string
+    const notification_time = `${year}-${month}-${day} ${hours}:${minutes}`;
 
 
 
@@ -328,7 +335,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return [main_category,category];
     }
     function chooseSliderValue(category){
-        //this funtion chooses the values to be placed in the slider - e.g. if AN1 is shown, on the left it should be ‘onecht’, on the right ‘natuurlijk’, if AN2, on the left ‘lijkend op een machine’, on the right ‘lijkend op een mens’, etc.
+        //this funtion chooses the values to be placed in the slider -
+        //e.g. if AN1 is shown, on the left it should be ‘onecht’, on the right ‘natuurlijk’, if AN2, on the left ‘lijkend op een machine’, on the right ‘lijkend op een mens’, etc.
         let min = -3
         let max = 3
         if (category == 'perception_AN1')
@@ -365,14 +373,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           // 3. Calculate pixel position
           const positionPx = percent * sliderWidth;
-
-          /*if(firsttime)
-          {
-            console.log('sliderWidth', sliderWidth);
-            console.log(`Slider thumb position: ${positionPx}px`, percent);
-          }*/
-
-
+          //Set tooltiip values
           let tooltipLeft = percent * sliderWidth;
 
           tooltip.textContent = val;
@@ -410,10 +411,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                 </div>`;
 
             messageList.appendChild(botMessage);
-            //console.log("category,messageList", category,messageList)
-
-
-
 
             // Check if the category has options
             const options = categoryOptions[main_category];
@@ -439,7 +436,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 messageList.appendChild(optionsContainer);
 
                 //inputField.disabled = false
-                //console.log('optionsContainer', optionsContainer)
             }
             else if (main_category === "perception_AN")
             {
@@ -560,7 +556,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function handleUserOption(selectedOption,optionButton, category) {
         // Create a user message bubble with the selected option
-        //console.log('optionButton',optionButton)
         lastQuestionid = getQuestionID()
         //Extract the id from b_
         id = lastQuestionid.substring(2,lastQuestionid.length)
@@ -570,26 +565,15 @@ document.addEventListener("DOMContentLoaded", () => {
         userMessage.classList.add("chat-message", "user-message");
         userMessage.innerHTML = `<div class="chat-message-text" id =  ${id}>${optionButton.value}</div>`;
         messageList.appendChild(userMessage);
-        //console.log('messageList',messageList)
 
         // Remove all option buttons after selection
         document.querySelectorAll(".chat-options").forEach(element => element.remove());
 
         // Proceed to the next step
-        if(id == "end" & selectedOption == "nee")
-        {
-            if(selectedOption == "nee")
-            {
-                console.log('nee selected')
-            }
-        }
-        else
-            handleResponse();
+        handleResponse();
     }
 
     function handleResponse() {
-        console.log('MessageList in HandleResponse', conversationStep , conversationFlow.length, messageList)
-
         if (conversationStep < conversationFlow.length) {
             setTimeout(() => {
                 inputField.disabled == true
@@ -605,15 +589,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function getAnswerID(){
         //this function call returns the last answer from user
         const userMessages = document.querySelectorAll("#chat-box .user-message");
-        //console.log('userMessages', userMessages)
         const lastUserMessage = userMessages[userMessages.length - 1]; // Get the last user message
-        //console.log('lastUserMessage', lastUserMessage)
         if(lastUserMessage)
         {    const lastUserMessagesTextElement = lastUserMessage.querySelector(".chat-message div:last-child"); // Last child div with text
-            //console.log('lastUserMessagesTextElement', lastUserMessagesTextElement)
             const lastuserMessagesText = lastUserMessagesTextElement ? lastUserMessagesTextElement.innerText : "";
             const lastMessageId = lastUserMessagesTextElement ? lastUserMessagesTextElement.id : null;
-            //console.log('lastuserMessagesText', lastuserMessagesText)
             return lastMessageId
         }
         return null
@@ -626,19 +606,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const lastBotMessageTextElement = lastBotMessage.querySelector(".chat-message-text div:last-child"); // Last child div with text
         const lastBotMessageText = lastBotMessageTextElement ? lastBotMessageTextElement.innerText : "";
         const lastMessageId = lastBotMessageTextElement ? lastBotMessageTextElement.id : null;
-
-        //console.log("Last Bot Message Text:", lastBotMessageText);
-        return lastMessageId
         //get last bot message element
+        return lastMessageId
+
     }
 
     sendButton.addEventListener("click", () => {
         if (!inputField.value.trim()) return;  // Prevent sending empty messages
 
-        /*if (isFirstUserInput) {
-            isFirstUserInput = false;
-            return; // Don't proceed to handleResponse
-        }*/
         //changing id of user message.
         lastMessageId = getQuestionID()
         //Extract the id from b_
@@ -683,50 +658,73 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     function saveUserData(){
-
-       // Check if a user response exists for each perception_AN key
-       // Build JSON array of message data from user messages
-        const messagesJSON = [];
-        for (const key in questionBank) {
+        // Check if a user response exists for each perception_AN key
+       // Build JSON array of message data from user message
+       messagesSTR = '';
+        messagesJSON = [];
+       for (const key in questionBank) {
             const userResponseElement = document.getElementById(key);
-            if (userResponseElement) {
+            if (userResponseElement)
+            {
+                value = userResponseElement.textContent
                 messagesJSON.push({
                    id: key,
                     value: userResponseElement.textContent
                 });
 
-                //console.log(`User entered for ${key}:`, userResponseElement.textContent);
-            } else {
-                console.log(`No user input for ${key}`);
+            }
+            else
+            {
+                value = 'NA'
                 messagesJSON.push({
                    id: key,
                    value: 'NA'
                 });
             }
+
+            if(messagesSTR == '')
+            {
+                messagesSTR = value
+            }
+            else
+                messagesSTR = messagesSTR + ','+  value
+
         }
+       //Storing Timestamp
+       now   = new Date(); // → a Date instance
 
-        const jsonData = {
+       // Extract components
+       const year = String(now.getFullYear()).slice(-2); // last 2 digits
+       const month = String(now.getMonth() + 1).padStart(2, '0'); // 0-indexed
+       const day = String(now.getDate()).padStart(2, '0');
+       const hours = now.getHours(); // do not pad, as per example
+       const minutes = String(now.getMinutes()).padStart(2, '0');
+
+        // Format the date string
+       const completedTimestamp = `${year}-${month}-${day} ${hours}:${minutes}`;
+
+       //JSON object
+       const stringFormatData = {
             action: "end",
-            timestamp: Date.now(),
+            notification_time: notification_time,
+            notification_complete: completedTimestamp,
             summary: "Chat session ended by the user.",
-            messages: messagesJSON
-        };
+            messages: messagesSTR,
+            JSONmessages: messagesJSON
+       };
 
-        // Output final JSON structure
-        //console.log(JSON.stringify(messagesJSON, null, 2));
+       const endStrData = JSON.stringify(stringFormatData);
+       console.log("Is Valid JSON", isValidJSON(endStrData), endStrData);
 
-        const endData = JSON.stringify(jsonData);
-        console.log("Is Valid JSON", isValidJSON(endData), endData);
+       window.parent.postMessage(endStrData, "*");
+       inputField.value = "";
 
-        window.parent.postMessage(endData, "*");
-        inputField.value = "";
-
+       return
     }
     endButton.addEventListener("click", () => {
-        /*TODO: The format to save the data*/
+
         saveUserData();
         inputField.value = "";
-        //return
     });
 
     function isValidJSON(str) {

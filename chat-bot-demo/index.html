@@ -12,5 +12,18 @@
 
     <br>
         Looking forward to your feedback.
+<script>
+    window.addEventListener("message", (event) => {
+    // Always validate the sender's origin
+    const data = event.data;
+    console.log("Received from child:", data);
+
+    // Do something with the data
+    if (data.message === "Task completed") {
+        console.log("Result:", data.result);
+    }
+});
+
+</script>
 </body>
 </html>

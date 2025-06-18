@@ -6,7 +6,8 @@ document.body.style.backgroundImage = 'url(data:image/png;base64,iVBORw0KGgoAAAA
     'l21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=)'
 // show experimental content
 iframe = document.createElement("iframe")
-iframe.setAttribute("src", "https://lavender-valaree-15.tiiny.site/")
+//iframe.setAttribute("src", "https://lavender-valaree-15.tiiny.site/")
+iframe.setAttribute("src", "https://usmanmalik.dev/chat-bot-demo/")
 iframe.style.overflow = "hidden"
 iframe.style.width = document.documentElement.clientWidth + "px"
 iframe.style.height = document.documentElement.clientHeight + "px"
@@ -16,9 +17,9 @@ document.body.appendChild(iframe)
 // child must call window.parent.postMessage([{iTrial: 0, condition: "AX", response: "target"}], "*")
 
 window.addEventListener("message", function(event) {
-
-    //var data = e[e.message ? "message" : "data"]
-    //console.log("data escaping iframe:",data)
+     var e = event
+    var data = e[e.message ? "message" : "data"]
+    console.log("data escaping iframe:",data)
 
     //console.log('messageevent', event)
     console.log('messageevent data', event.data, typeof(event.data))
@@ -43,7 +44,8 @@ window.addEventListener("message", function(event) {
 
         document.getElementById("ls-button-submit").click() // finish, limesurvey 3
         //move to next window
-    } catch (e) {
+    } catch (err) {
+        console.log('Error', err)
         console.log('not valid json')
         //return false; // It's not valid JSON
     }
