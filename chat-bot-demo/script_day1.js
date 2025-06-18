@@ -84,7 +84,7 @@ const questionBank = {
         engagement_burden1: ["Kostte het invullen van deze vragenlijst moeite?"],
         engagement_burden2: ["Stoorde deze notificatie jou?"],
 
-        engagement_disclosure1:["Ik voelde dat ik persoonlijk kon zijn in dit  vragenlijstsysteem"],
+        engagement_disclosure1:["Voelde je dat je persoonlijk kon zijn in dit vragenlijstsysteem?"],
         engagement_disclosure2: ["Voelde je je op je gemak om persoonlijke informatie te deIen in  dit vragenlijstsysteem?"],
         engagement_disclosure3: ["Was het gemakkelijk om persoonlijke informatie te delen in dit vragenlijstsysteem?"],
         engagement_disclosure4: ["Voelde je dat je open kon zijn in dit vragenlijstsysteem?"],
