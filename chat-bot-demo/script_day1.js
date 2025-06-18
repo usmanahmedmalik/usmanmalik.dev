@@ -35,8 +35,13 @@ const categoryOptions = {
     };
 const questionBank = {
         welcome: [
-            "Hallo student, ik ben chatbot Whaby! Ik zal de komende week, vanaf morgen, 10 keer per dag vragen hoe het met je welbevinden is, om te kijken hoe het met je gaat en zodat de onderzoekers weten hoe ze studenten verder kunnen helpen 😊 Ik zal je deze op willekeurige momenten tussen 07:30 en 22:30 sturen via een SMS bericht. Om dit bericht niet te missen, lijkt het mij verstandig om het geluid van je meldingen aan te zetten. Reageer op deze vragen zo eerlijk mogelijk, passend bij het moment, en denk niet te lang na. Er bestaan geen foute antwoorden! Reageren op de vragen duurt ongeveer 2 minuten, en na 15 minuten moet ik weer weg. Voor je omgeving kan het soms vervelend zijn wanneer je midden in een gesprek een notificatie krijgt waar je op moet reageren. Je kunt dat uitleggen dat je aan een onderzoek meedoet en het belangrijk is dat je binnen 15 minuten op mij reageert. Zorg er wel voor dat het invullen anoniem blijft en de ander geen invloed heeft op jouw antwoorden. Ik zou dan vragen of het goed is als je even 2 minuutjes even ergens anders gaat zitten. Alleen wanneer je echt niet gestoord kunt worden (je bent bijvoorbeeld in het verkeer of maakt een tentamen), kun je het geluid van binnenkomende meldingen uitzetten. Zet deze wel weer aan direct zodra het weer kan 😅 De dag na deze 7 dagen, krijg je een SMS bericht voor de evaluatie. Deze duurt 10 minuten om in te vullen. Wees hierbij ook zo eerlijk mogelijk; met jouw input kunnen we onderzoek naar welbevinden verbeteren.  Al je antwoorden worden op dezelfde, beveiligde manier en op dezelfde beveiligde plek opgeslagen als de andere vragenlijsten in LimeSurvey. De vragen die ik je zal stellen zullen gesloten vragen zijn waarbij je een antwoordoptie kunt selecteren om naar mij te sturen, en deze zullen elke keer hetzelfde zijn. Om je huidige welbevinden zo objectief mogelijk te meten, kan ik niet reageren op je antwoorden binnen deze vragenlijsten 😞"
+            "Hallo student, ik ben chatbot Whaby!"
         ],
+        welcome2:["Ik zal de komende week, vanaf morgen, 10 keer per dag vragen hoe het met je welbevinden is, om te kijken hoe het met je gaat en zodat de onderzoekers weten hoe ze studenten verder kunnen helpen 😊 Ik zal je deze op willekeurige momenten tussen 07:30 en 22:30 sturen via een SMS bericht. Om dit bericht niet te missen, lijkt het mij verstandig om het geluid van je meldingen aan te zetten. Reageer op deze vragen zo eerlijk mogelijk, passend bij het moment, en denk niet te lang na. Er bestaan geen foute antwoorden! Reageren op de vragen duurt ongeveer 2 minuten, en na 15 minuten moet ik weer weg."],
+        welcome3:[" Voor je omgeving kan het soms vervelend zijn wanneer je midden in een gesprek een notificatie krijgt waar je op moet reageren. Je kunt dat uitleggen dat je aan een onderzoek meedoet en het belangrijk is dat je binnen 15 minuten op mij reageert. Zorg er wel voor dat het invullen anoniem blijft en de ander geen invloed heeft op jouw antwoorden. Ik zou dan vragen of het goed is als je even 2 minuutjes even ergens anders gaat zitten."],
+        welcome4:["Alleen wanneer je echt niet gestoord kunt worden (je bent bijvoorbeeld in het verkeer of maakt een tentamen), kun je het geluid van binnenkomende meldingen uitzetten. Zet deze wel weer aan direct zodra het weer kan 😅"],
+        welcome5:[" De dag na deze 7 dagen, krijg je een SMS bericht voor de evaluatie. Deze duurt 10 minuten om in te vullen. Wees hierbij ook zo eerlijk mogelijk; met jouw input kunnen we onderzoek naar welbevinden verbeteren."],
+        welcome6:["Al je antwoorden worden op dezelfde, beveiligde manier en op dezelfde beveiligde plek opgeslagen als de andere vragenlijsten in LimeSurvey. De vragen die ik je zal stellen zullen gesloten vragen zijn waarbij je een antwoordoptie kunt selecteren om naar mij te sturen, en deze zullen elke keer hetzelfde zijn. Om je huidige welbevinden zo objectief mogelijk te meten, kan ik niet reageren op je antwoorden binnen deze vragenlijsten 😞"],
         practice: [
         "Zou je de dagboekvragenlijst alvast met mij willen oefenen?"
         ],
@@ -106,6 +111,11 @@ const questionBank = {
 
 let conversationFlow = [
         { category: "welcome" },
+        { category: "welcome2"},
+        { category: "welcome3"},
+        { category: "welcome4"},
+        { category: "welcome5"},
+        { category: "welcome6"},
         { category: "practice" },
 
         { category: "instructions" },
@@ -408,7 +418,10 @@ document.addEventListener("DOMContentLoaded", () => {
             {
                 endChat();
             }
-            else if (category == "instructions" || category == "experience")
+            else if (category == "instructions" || category == "experience"
+                        || category == "welcome" || category == "welcome2"
+                        || category == "welcome3" || category == "welcome4"
+                        || category == "welcome5" || category == "welcome6")
             {
                 askNextQuestion();
             }
@@ -596,33 +609,35 @@ document.addEventListener("DOMContentLoaded", () => {
        messagesSTR = '';
        messagesJSON = [];
        for (const key in questionBank) {
-            const userResponseElement = document.getElementById(key);
-            if (userResponseElement)
-            {
-                value = userResponseElement.textContent
-                messagesJSON.push({
-                   id: key,
-                    value: userResponseElement.textContent
-                });
+            if (!key.includes("welcome")) {
+                const userResponseElement = document.getElementById(key);
+                if (userResponseElement)
+                {
+                    value = userResponseElement.textContent
+                    messagesJSON.push({
+                       id: key,
+                        value: userResponseElement.textContent
+                    });
+
+                }
+                else
+                {
+                    value = 'NA'
+                    messagesJSON.push({
+                       id: key,
+                       value: 'NA'
+                    });
+                }
+
+                if(messagesSTR == '')
+                {
+                    messagesSTR = value
+                }
+                else
+                    messagesSTR = messagesSTR + ','+  value
 
             }
-            else
-            {
-                value = 'NA'
-                messagesJSON.push({
-                   id: key,
-                   value: 'NA'
-                });
-            }
-
-            if(messagesSTR == '')
-            {
-                messagesSTR = value
-            }
-            else
-                messagesSTR = messagesSTR + ','+  value
-
-        }
+       }    //for (const key in questionBank) {
        //Storing Timestamp
        now   = new Date(); // → a Date instance
 

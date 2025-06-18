@@ -219,6 +219,7 @@ const conversationFlow = [
         { category: "engagement_disclosure" },
         { category: "perception_SP"},
         { category: "perception_AN"},
+        { category:  "thankyou"},
         { category: "submit" },
         { category: "end"}
     ];
@@ -661,35 +662,37 @@ document.addEventListener("DOMContentLoaded", () => {
         // Check if a user response exists for each perception_AN key
        // Build JSON array of message data from user message
        messagesSTR = '';
-        messagesJSON = [];
+       messagesJSON = [];
        for (const key in questionBank) {
-            const userResponseElement = document.getElementById(key);
-            if (userResponseElement)
-            {
-                value = userResponseElement.textContent
-                messagesJSON.push({
-                   id: key,
-                    value: userResponseElement.textContent
-                });
+            if (!key.includes("welcome")) {
+                const userResponseElement = document.getElementById(key);
+                if (userResponseElement)
+                {
+                    value = userResponseElement.textContent
+                    messagesJSON.push({
+                       id: key,
+                        value: userResponseElement.textContent
+                    });
+
+                }
+                else
+                {
+                    value = 'NA'
+                    messagesJSON.push({
+                       id: key,
+                       value: 'NA'
+                    });
+                }
+
+                if(messagesSTR == '')
+                {
+                    messagesSTR = value
+                }
+                else
+                    messagesSTR = messagesSTR + ','+  value
 
             }
-            else
-            {
-                value = 'NA'
-                messagesJSON.push({
-                   id: key,
-                   value: 'NA'
-                });
-            }
-
-            if(messagesSTR == '')
-            {
-                messagesSTR = value
-            }
-            else
-                messagesSTR = messagesSTR + ','+  value
-
-        }
+       }    //for (const key in questionBank) {
        //Storing Timestamp
        now   = new Date(); // → a Date instance
 
