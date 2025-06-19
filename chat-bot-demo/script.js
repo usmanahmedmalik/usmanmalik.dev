@@ -24,9 +24,10 @@ const categoryOptions = {
     social_wellbeing_SO2: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
     social_wellbeing_SO3: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
 
-    engagement_burden: ["helemaal oneens","oneens","neutraal", "eens","helemaal eens"],
-    engagement_disclosure: ["helemaal oneens","oneens", "neutraal", "eens","helemaal eens"],
-    perception_SP: ["helemaal oneens","oneens", "neutraal", "eens","helemaal eens"],
+    engagement_burden: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    engagement_disclosure: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    perception_SP: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+
     perception_AN: null, //No options handled by slider
     welcome: null, // No options for welcome
     submit: ["Tot ziens"],
@@ -488,7 +489,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             //todo: do not take the input when..
-            if(category == "welcome" || category == "instructions" || category == "thankyou")
+            if(category == "welcome" || category == "instructions" || category == "thankyou" || category == "experience")
             {
                 askNextQuestion();
             }

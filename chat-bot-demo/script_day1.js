@@ -28,6 +28,7 @@ const categoryOptions = {
     engagement_burden: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
     engagement_disclosure: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
     perception_SP: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+
     perception_AN: null, //No options handled by slider
     welcome: null, // No options for welcome
     no_practice:["Tot ziens"],
