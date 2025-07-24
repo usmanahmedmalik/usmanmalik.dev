@@ -410,9 +410,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateTooltip(slider,tooltip,true); //true => executed for the first time
 
                 // On slider change (submission)
-                slider.onmouseup = function() {
+                // On slider (submission)
+                slider.addEventListener("mouseup", () => handleSlider(sliderContainer));
+                slider.addEventListener("touchend", () => handleSlider(sliderContainer));
+
+                /*slider.onmouseup = function() {
                     handleSlider(sliderContainer)
-                }
+                }*/
             }
             //TODO - as per desired: do not take the input when..
             if(category == "no_practice_end" || category == "practice_end")

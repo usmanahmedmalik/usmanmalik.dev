@@ -483,9 +483,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateTooltip(slider,tooltip,true); //true => executed for the first time
 
                 // On slider (submission)
-                slider.onmouseup = function() {
+                slider.addEventListener("mouseup", () => handleSlider(sliderContainer));
+                slider.addEventListener("touchend", () => handleSlider(sliderContainer));
+
+                /*slider.onmouseup = function() {
                     handleSlider(sliderContainer)
                 }
+
+                slider.touchend = function() {
+                    handleSlider(sliderContainer)
+                }*/
             }
 
             //todo: do not take the input when..
