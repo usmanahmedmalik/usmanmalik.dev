@@ -39,12 +39,13 @@ const questionBank = {
             "Hallo student, ik ben chatbot Whaby!"
         ],
         welcome2:["Ik zal de komende week, vanaf morgen, 10 keer per dag vragen hoe het met je welbevinden is, om te kijken hoe het met je gaat en zodat de onderzoekers weten hoe ze studenten verder kunnen helpen 😊 Ik zal je deze op willekeurige momenten tussen 07:30 en 22:30 sturen via een SMS bericht. Om dit bericht niet te missen, lijkt het mij verstandig om het geluid van je meldingen aan te zetten. Reageer op deze vragen zo eerlijk mogelijk, passend bij het moment, en denk niet te lang na. Er bestaan geen foute antwoorden! Reageren op de vragen duurt ongeveer 2 minuten, en na 15 minuten moet ik weer weg."],
-        welcome3:[" Voor je omgeving kan het soms vervelend zijn wanneer je midden in een gesprek een notificatie krijgt waar je op moet reageren. Je kunt dat uitleggen dat je aan een onderzoek meedoet en het belangrijk is dat je binnen 15 minuten op mij reageert. Zorg er wel voor dat het invullen anoniem blijft en de ander geen invloed heeft op jouw antwoorden. Ik zou dan vragen of het goed is als je even 2 minuutjes even ergens anders gaat zitten."],
-        welcome4:["Alleen wanneer je echt niet gestoord kunt worden (je bent bijvoorbeeld in het verkeer of maakt een tentamen), kun je het geluid van binnenkomende meldingen uitzetten. Zet deze wel weer aan direct zodra het weer kan 😅"],
-        welcome5:[" De dag na deze 7 dagen, krijg je een SMS bericht voor de evaluatie. Deze duurt 10 minuten om in te vullen. Wees hierbij ook zo eerlijk mogelijk; met jouw input kunnen we onderzoek naar welbevinden verbeteren."],
-        welcome6:["Al je antwoorden worden op dezelfde, beveiligde manier en op dezelfde beveiligde plek opgeslagen als de andere vragenlijsten in LimeSurvey. De vragen die ik je zal stellen zullen gesloten vragen zijn waarbij je een antwoordoptie kunt selecteren om naar mij te sturen, en deze zullen elke keer hetzelfde zijn. Om je huidige welbevinden zo objectief mogelijk te meten, kan ik niet reageren op je antwoorden binnen deze vragenlijsten 😞"],
+        welcome3:["Reageer op deze vragen zo eerlijk mogelijk, passend bij het moment, en denk niet te lang na. Er bestaan geen foute antwoorden! Reageren op de vragen duurt ongeveer 2 minuten, en na 15 minuten moet ik weer weg."],
+        welcome4:[" Voor je omgeving kan het soms vervelend zijn wanneer je midden in een gesprek een notificatie krijgt waar je op moet reageren. Je kunt dat uitleggen dat je aan een onderzoek meedoet en het belangrijk is dat je binnen 15 minuten op mij reageert. Zorg er wel voor dat het invullen anoniem blijft en de ander geen invloed heeft op jouw antwoorden. Ik zou dan vragen of het goed is als je even 2 minuutjes even ergens anders gaat zitten."],
+        welcome5:["Alleen wanneer je echt niet gestoord kunt worden (je bent bijvoorbeeld in het verkeer of maakt een tentamen), kun je het geluid van binnenkomende meldingen uitzetten. Zet deze wel weer aan direct zodra het weer kan 😅"],
+        welcome6:[" De dag na deze 7 dagen, krijg je een SMS bericht voor de evaluatie. Deze duurt 10 minuten om in te vullen. Wees hierbij ook zo eerlijk mogelijk; met jouw input kunnen we onderzoek naar welbevinden verbeteren."],
+        welcome7:["Al je antwoorden worden op dezelfde, beveiligde manier en op dezelfde beveiligde plek opgeslagen als de andere vragenlijsten op de Open Universiteit. De vragen die ik je zal stellen zullen gesloten vragen zijn waarbij je een antwoordoptie kunt selecteren om naar mij te sturen, en deze zullen elke keer hetzelfde zijn. Om je huidige welbevinden zo objectief mogelijk te meten, kan ik niet reageren op je antwoorden binnen deze vragenlijsten 😞"],
         practice: [
-        "Zou je de dagboekvragenlijst alvast met mij willen oefenen?"
+        "Om je vertrouwd te maken met de dagboekvragenlijst, kun je de oefenvragenlijst hieronder in te vullen. Vul deze net zo eerlijk en zorgvuldig in als de dagboekvragenlijstjes die je vanaf morgen zult ontvangen. Klik op 'Start' om te beginnen."
         ],
 
         instructions: [
@@ -60,7 +61,7 @@ const questionBank = {
             "Wat was het belangrijkste dat je deed?"
         ],
         context_onoff: [
-            "Was je online of offline?"
+            "Was deze activiteit online of offline?"
         ],
         context_physical: [
             "Hoe fysiek actief was je?"
@@ -80,7 +81,7 @@ const questionBank = {
         social_wellbeing_SO2: ["Hoe tevreden met je persoonlijke relaties voel je je?"],
         social_wellbeing_SO3: ["Hoe sterk voel je dat je tot een groep behoort?"],
 
-        experience: ["De volgende vragen gaan over je ervaringen gedurende deze vragenlijst."],
+        experience: ["Ik zou je nu nog wat vragen willen stellen over je ervaringen tijdens deze vragenlijst:"],
 
         engagement_burden1: ["Kostte het invullen van deze vragenlijst moeite?"],
         engagement_burden2: ["Stoorde deze notificatie jou?"],
@@ -100,7 +101,7 @@ const questionBank = {
         perception_AN3: ["Geef je indruk weer van het vragenlijstsysteem:"],
         perception_AN4: ["Geef je indruk weer van het vragenlijstsysteem:"],
 
-        final: ["We zijn door de oefen dagboekvragenlijst heen. Mocht je toch nog vragen hebben, kun je contact opnemen met [e-mailaddress]. Klik op 'Tot ziens' als je morgen graag wilt starten."
+        final: ["We zijn door de oefen dagboekvragenlijst heen. Mocht je toch nog vragen hebben, kun je contact opnemen met jb9@ou.nl. Klik op 'Tot ziens' als je morgen graag wilt starten."
         ],
         no_practice:["Geen probleem 😌 Mocht je toch nog vragen hebben, kun je altijd contact opnemen met [e-mailaddress]. Klik op 'Tot ziens' als je morgen graag wilt starten."
         ],
@@ -117,6 +118,7 @@ let conversationFlow = [
         { category: "welcome4"},
         { category: "welcome5"},
         { category: "welcome6"},
+        { category: "welcome7"},
         { category: "practice" },
 
         { category: "instructions" },
@@ -144,8 +146,8 @@ let conversationFlow = [
         { category: "engagement_disclosure" },
         { category: "perception_SP"},
         { category: "perception_AN"},
-        { category: "final" },
-        { category: "practice_end" }
+        { category: "final" }//,
+        //{ category: "practice_end" }
     ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -181,11 +183,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return questions[index];
     }
 
-    function askNextQuestion() {
+    function askNextQuestion(msg_delay = 2000) {
         //chooses the category
         let [main_category,category] = chooseCategory();
         //displays the question
-        displayQuestion(main_category, category)
+        displayQuestion(main_category, category, msg_delay)
     }
     function chooseCategory(){
         let category;
@@ -256,6 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
             }
+
             return [main_category,category];
     }
     function chooseSliderValue(category){
@@ -275,8 +278,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         else if (category ==  'perception_AN3')
         {
-            min = 'onbewust'
-            max = ' heeft een bewustzijn'
+            min = 'heeft geen bewustzijn'
+            max = 'heeft wel een bewustzijn'
         }
         else if (category == 'perception_AN4')
         {
@@ -307,7 +310,12 @@ document.addEventListener("DOMContentLoaded", () => {
           //tooltip.style.left = `${tooltipLeft}px`;
 
     }
-    function displayQuestion(main_category, category){
+    function displayQuestion(main_category, category, delay = 2000){
+    /*
+        main category = perception_AN
+        then category = perception_AN1 and so on
+        delay controls the number of seconds to display the next question
+    */
     // Get random questions from the category
         const questions = questionBank[category];
         if (!questions || questions.length === 0) return; // Safety check
@@ -320,7 +328,23 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-
+        //setting custom delay for specific messages
+        if (category == "welcome")
+            delay = 2000
+        else if (category == "welcome2")
+            delay = 4000
+        else if (category == "welcome3")
+            delay = 18000
+        else if (category == "welcome4")
+            delay = 13000
+        else if (category == "welcome5")
+            delay = 20000
+        else if (category == "welcome6")
+            delay = 16000
+        else if (category == "welcome7")
+            delay = 14000
+        else if (category == "practice")
+            delay = 25000
 
         showTypingIndicator(() => { //this would use ... to be displayed
             let questionText = getRandomQuestion(category);
@@ -338,8 +362,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                 </div>`;
 
             messageList.appendChild(botMessage);
-
-
 
 
             // Check if the category has options
@@ -426,7 +448,7 @@ document.addEventListener("DOMContentLoaded", () => {
             else if (category == "instructions" || category == "experience"
                         || category == "welcome" || category == "welcome2"
                         || category == "welcome3" || category == "welcome4"
-                        || category == "welcome5" || category == "welcome6")
+                        || category == "welcome5" || category == "welcome6" || category == "welcome7")
             {
                 askNextQuestion();
             }
@@ -436,27 +458,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 messageList.scrollTop = messageList.scrollHeight;
             }
 
-        }); // showTypingIndicator(()
+        }, delay); // showTypingIndicator(()
     }
 
     function handleSlider(sliderContainer){
         // Get slider and value span elements
         const slider = sliderContainer.querySelector("#responseSlider");
-        const valueSpan1 = sliderContainer.querySelector("#sliderValue1");
-        const valueSpan2 = sliderContainer.querySelector("#sliderValue2");
-        const tooltip = document.getElementById('sliderTooltip');
-        //handle the (display of) slider
+
+        //handle the value of slider
         const responseValue = slider.value;
         handleSliderInput(responseValue, slider)
+
         // Remove the slider container and related contents from the chat once the user finalizes the value
-        if (sliderContainer){
-            slider.remove();
-            valueSpan1.remove();
-            valueSpan2.remove();
-            tooltip.style.display = 'none'  //hide tooltip
+        const chatOptions = document.querySelector(".chat-options");
+        if (chatOptions) {
+            chatOptions.remove();
         }
+
+
         // Proceed to the next step
         handleResponse();
+
     }
 
     function handleSliderInput(responseValue, slider){
@@ -579,7 +601,8 @@ document.addEventListener("DOMContentLoaded", () => {
         handleResponse();
     });
 
-    function showTypingIndicator(callback) {
+
+    function showTypingIndicator(callback,nsecs = 2000) {
         const typingIndicator = document.createElement("div");
         typingIndicator.classList.add("chat-message", "bot-message", "typing");
         typingIndicator.innerHTML = `<div class="chat-message-text">...</div>`;
@@ -587,12 +610,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Auto-scroll to latest message
         messageList.scrollTop = messageList.scrollHeight;
-
         // Wait for 2 seconds, then replace "..." with actual message
         setTimeout(() => {
             messageList.removeChild(typingIndicator); // Remove typing dots
             callback(); // Call function to show the actual bot message
-        }, 2000);
+        }, nsecs);
     }
 
 
@@ -690,5 +712,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // **Start chat with the first question**
+
     askNextQuestion();
 });

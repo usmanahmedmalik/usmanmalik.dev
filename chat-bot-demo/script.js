@@ -1,5 +1,5 @@
 /*
-    script - V 0.1. This code works for adding the options
+    script - V 0.1. This code works for complete chatbot
 */
 
 const categoryOptions = {
@@ -103,7 +103,7 @@ const questionBank = {
             "Wat was het belangrijkste dat je deed?"
         ],
         context_onoff: [
-            "Was je online of offline?"
+            "Was deze activiteit online of offline?"
         ],
         context_physical: [
             "Hoe fysiek actief was je?"
@@ -188,8 +188,8 @@ const questionBank = {
                     "En we zijn weer aan het eind gekomen van de vragenlijst! Mooi gedaan, dankjewel 😊",
                     "En we zijn weer aan het eind gekomen van de vragenlijst 😊 Mooi gedaan, dankjewel!"
         ],
-        submit: ["Klik 'Tot ziens' als je je antwoorden wilt versturen."],
-        end: ["Je antwoorden zijn opgeslagen. Tot de volgende keer."]
+        submit: ["Klik 'Tot ziens' als je je antwoorden wilt versturen."]//,
+        //end: ["Je antwoorden zijn opgeslagen. Tot de volgende keer."]
     };
 
 const conversationFlow = [
@@ -221,8 +221,8 @@ const conversationFlow = [
         { category: "perception_SP"},
         { category: "perception_AN"},
         { category:  "thankyou"},
-        { category: "submit" },
-        { category: "end"}
+        { category: "submit" }//,
+        //{ category: "end"}
     ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -353,8 +353,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         else if (category ==  'perception_AN3')
         {
-            min = 'onbewust'
-            max = ' heeft een bewustzijn'
+            min = 'heeft geen bewustzijn'
+            max = ' heeft wel een bewustzijn'
         }
         else if (category == 'perception_AN4')
         {
@@ -397,7 +397,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 selectedQuestions.push(randomQuestion);
             }
         }
-
         showTypingIndicator(() => { //this would use ... to be displayed
             let questionText = getRandomQuestion(category);
             const botMessage = document.createElement("div");
@@ -512,22 +511,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }); // showTypingIndicator(()
     }
     function handleSlider(sliderContainer){
+
         // Get slider and value span elements
         const slider = sliderContainer.querySelector("#responseSlider");
-        const valueSpan1 = sliderContainer.querySelector("#sliderValue1");
-        const valueSpan2 = sliderContainer.querySelector("#sliderValue2");
-        const tooltip = document.getElementById('sliderTooltip');
-        //handle the (display of) slider
+
+        //handle the value of slider
         const responseValue = slider.value;
         handleSliderInput(responseValue, slider)
-        // Remove the slider container and related contents from the chat once the user finalizes the value
 
-        if (sliderContainer){
-            slider.remove();
-            valueSpan1.remove();
-            valueSpan2.remove();
-            tooltip.style.display = 'none'  //hide tooltip
+        // Remove the slider container and related contents from the chat once the user finalizes the value
+        const chatOptions = document.querySelector(".chat-options");
+        if (chatOptions) {
+            chatOptions.remove();
         }
+
+
         // Proceed to the next step
         handleResponse();
     }
@@ -637,7 +635,8 @@ document.addEventListener("DOMContentLoaded", () => {
         handleResponse();
     });
 
-    function showTypingIndicator(callback) {
+
+    function showTypingIndicator(callback,nsecs = 2000) {
         const typingIndicator = document.createElement("div");
         typingIndicator.classList.add("chat-message", "bot-message", "typing");
         typingIndicator.innerHTML = `<div class="chat-message-text">...</div>`;
@@ -645,15 +644,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Auto-scroll to latest message
         messageList.scrollTop = messageList.scrollHeight;
-
         // Wait for 2 seconds, then replace "..." with actual message
         setTimeout(() => {
             messageList.removeChild(typingIndicator); // Remove typing dots
             callback(); // Call function to show the actual bot message
-        }, 2000);
+        }, nsecs);
     }
-
-
 
     function endChat() {
         inputField.disabled = true;
