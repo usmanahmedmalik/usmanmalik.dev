@@ -116,7 +116,7 @@ body {
     gap: 8px;               /* space between buttons */
     margin: 8px 0;          /* spacing around container */
     padding: 10px;           /* bigger inner area */
-    background: white;     /* #f5f5f5 optional background */
+    background: #f0f0f0;     /* optional background */
     border-radius: 8px;      /* rounded look */
 }
 

@@ -3,7 +3,7 @@
 */
 
 const categoryOptions = {
-    practice: ["nee","ja"],
+    practice: ["Start"],
     context_company: ["Alleen", "Met vrienden" ,"Met familie","Met mijn partner", "Met medestudenten", "Met collega's", "Met kennissen", "Met vreemden/anderen"],
     context_location:["Thuis","Onderweg","School/universiteit","Openbare locatie","Werk","Bij vriend(en)/familie thuis"],
     context_activity: ["Alleen studeren","Met anderen studeren", "Een les volgen", "Onderweg", "Werken", "In een gesprek", "Ontspannen, e.g., zitten/liggen, gamen, lezen", "Sporten", "Aan het eten", "Huishoudelijk klusje", "Anders"],
@@ -38,14 +38,14 @@ const questionBank = {
         welcome: [
             "Hallo student, ik ben chatbot Whaby!"
         ],
-        welcome2:["Ik zal de komende week, vanaf morgen, 10 keer per dag vragen hoe het met je welbevinden is, om te kijken hoe het met je gaat en zodat de onderzoekers weten hoe ze studenten verder kunnen helpen 😊 Ik zal je deze op willekeurige momenten tussen 07:30 en 22:30 sturen via een SMS bericht. Om dit bericht niet te missen, lijkt het mij verstandig om het geluid van je meldingen aan te zetten. Reageer op deze vragen zo eerlijk mogelijk, passend bij het moment, en denk niet te lang na. Er bestaan geen foute antwoorden! Reageren op de vragen duurt ongeveer 2 minuten, en na 15 minuten moet ik weer weg."],
+        welcome2:["Ik zal de komende week, vanaf morgen, 10 keer per dag vragen hoe het met je welbevinden is, om te kijken hoe het met je gaat en zodat de onderzoekers weten hoe ze studenten verder kunnen helpen 😊 Ik zal je deze op willekeurige momenten tussen 07:30 en 22:30 sturen via een SMS bericht. Om dit bericht niet te missen, lijkt het mij verstandig om het geluid van je meldingen aan te zetten."],
         welcome3:["Reageer op deze vragen zo eerlijk mogelijk, passend bij het moment, en denk niet te lang na. Er bestaan geen foute antwoorden! Reageren op de vragen duurt ongeveer 2 minuten, en na 15 minuten moet ik weer weg."],
         welcome4:[" Voor je omgeving kan het soms vervelend zijn wanneer je midden in een gesprek een notificatie krijgt waar je op moet reageren. Je kunt dat uitleggen dat je aan een onderzoek meedoet en het belangrijk is dat je binnen 15 minuten op mij reageert. Zorg er wel voor dat het invullen anoniem blijft en de ander geen invloed heeft op jouw antwoorden. Ik zou dan vragen of het goed is als je even 2 minuutjes even ergens anders gaat zitten."],
         welcome5:["Alleen wanneer je echt niet gestoord kunt worden (je bent bijvoorbeeld in het verkeer of maakt een tentamen), kun je het geluid van binnenkomende meldingen uitzetten. Zet deze wel weer aan direct zodra het weer kan 😅"],
         welcome6:[" De dag na deze 7 dagen, krijg je een SMS bericht voor de evaluatie. Deze duurt 10 minuten om in te vullen. Wees hierbij ook zo eerlijk mogelijk; met jouw input kunnen we onderzoek naar welbevinden verbeteren."],
         welcome7:["Al je antwoorden worden op dezelfde, beveiligde manier en op dezelfde beveiligde plek opgeslagen als de andere vragenlijsten op de Open Universiteit. De vragen die ik je zal stellen zullen gesloten vragen zijn waarbij je een antwoordoptie kunt selecteren om naar mij te sturen, en deze zullen elke keer hetzelfde zijn. Om je huidige welbevinden zo objectief mogelijk te meten, kan ik niet reageren op je antwoorden binnen deze vragenlijsten 😞"],
         practice: [
-        "Om je vertrouwd te maken met de dagboekvragenlijst, kun je de oefenvragenlijst hieronder in te vullen. Vul deze net zo eerlijk en zorgvuldig in als de dagboekvragenlijstjes die je vanaf morgen zult ontvangen. Klik op 'Start' om te beginnen."
+        "Om je vertrouwd te maken met de dagboekvragenlijst, kun je de oefenvragenlijst hieronder invullen. Vul deze net zo eerlijk en zorgvuldig in als de dagboekvragenlijstjes die je vanaf morgen zult ontvangen. Klik op 'Start' om te beginnen."
         ],
 
         instructions: [
@@ -334,17 +334,19 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (category == "welcome2")
             delay = 4000
         else if (category == "welcome3")
-            delay = 18000
-        else if (category == "welcome4")
-            delay = 13000
-        else if (category == "welcome5")
-            delay = 20000
-        else if (category == "welcome6")
             delay = 16000
+        else if (category == "welcome4")
+            delay = 9000
+        else if (category == "welcome5")
+            delay = 19000
+        else if (category == "welcome6")
+            delay = 10000
         else if (category == "welcome7")
-            delay = 14000
+            delay = 10000
         else if (category == "practice")
-            delay = 25000
+            delay = 19000
+        else if (category == "company")
+            delay = 5000
 
         showTypingIndicator(() => { //this would use ... to be displayed
             let questionText = getRandomQuestion(category);
