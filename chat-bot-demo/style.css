@@ -46,7 +46,8 @@ body {
 
 
 .chat-box {
-    height: 300px;
+    height: 60vh; /* 60% of the viewport height */
+    /*height: auto;  /*300px*/
     overflow-y: scroll;
     padding: 2px;
     background-color: #f0f0f0;  /* Light gray background*/
