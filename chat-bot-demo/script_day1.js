@@ -11,23 +11,23 @@ const categoryOptions = {
     context_onoff: ["Online", "Offline"],
     context_physical: [" 1 (e.g., rusten)","2 (e.g., zitten)", "3 (e.g., lopen)",  "4 (e.g., huishoudelijke taak zoals stofzuigen)", "5 (e.g., fietsen)", "6 (e.g., tennissen)", "7 (e.g., rennen)"],
 
-    affect_PA1: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
-    affect_PA2: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
-    affect_NA1: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
-    affect_NA2: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    affect_PA1: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
+    affect_PA2: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
+    affect_NA1: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
+    affect_NA2: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
 
-    stress: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    stress: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
 
-    vitality_VL1: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
-    vitality_VL2: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    vitality_VL1: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
+    vitality_VL2: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
 
-    social_wellbeing_SO1: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
-    social_wellbeing_SO2: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
-    social_wellbeing_SO3: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    social_wellbeing_SO1: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
+    social_wellbeing_SO2: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
+    social_wellbeing_SO3: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
 
-    engagement_burden: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
-    engagement_disclosure: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
-    perception_SP: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    engagement_burden: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
+    engagement_disclosure: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
+    perception_SP: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
 
     perception_AN: null, //No options handled by slider
     welcome: null, // No options for welcome
@@ -58,13 +58,13 @@ const questionBank = {
             "Waar was je?"
         ],
         context_activity: [
-            "Wat was het belangrijkste dat je deed?"
+            "Wat was de belangrijkste activiteit die je deed?"
         ],
         context_onoff: [
             "Was deze activiteit online of offline?"
         ],
         context_physical: [
-            "Hoe fysiek actief was je?"
+            "Hoe fysiek actief was je, op een schaal van 1 tot 7?"
         ],
 
         affect_PA1: ["Hoe opgewekt voel je je?"],
