@@ -24,9 +24,9 @@ const categoryOptions = {
     social_wellbeing_SO2: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
     social_wellbeing_SO3: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
 
-    engagement_burden: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
-    engagement_disclosure: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
-    perception_SP: ["helemaal niet", "een beetje", "enigszins", "matig", "redelijk", "erg", "zeer"],
+    engagement_burden: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
+    engagement_disclosure: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
+    perception_SP: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
 
     perception_AN: null, //No options handled by slider
     welcome: null, // No options for welcome
