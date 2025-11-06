@@ -29,7 +29,13 @@ const categoryOptions = {
     engagement_disclosure: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
     perception_SP: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
 
-    perception_AN: null, //No options handled by slider
+    //perception_AN: null, //No options handled by slider
+
+    perception_AN1: ["onecht" , "beetje onecht", "neutraal", "beetje natuurlijk", "natuurlijk"],
+    perception_AN2: ["lijkend op een machine","beetje lijkend op een machine","neutraal","beetje lijkend op een mens","lijkend op een mens"],
+    perception_AN3: ["heeft geen bewustzijn", "heeft waarschijnlijk geen bewustzijn", "neutraal", "heeft waarschijnlijk een bewustzijn", "heeft een bewustzijn"],
+    perception_AN4: ["kunstmatig", "beetje kunstmatig", "neutraal", "beetje levensecht", "levensecht"],
+
     welcome: null, // No options for welcome
     no_practice:["Tot ziens"],
     final: ["Tot ziens"]
@@ -145,7 +151,13 @@ let conversationFlow = [
         { category: "engagement_burden" },
         { category: "engagement_disclosure" },
         { category: "perception_SP"},
-        { category: "perception_AN"},
+        //{ category: "perception_AN"},
+
+        { category: "perception_AN1"},
+        { category: "perception_AN2"},
+        { category: "perception_AN3"},
+        { category: "perception_AN4"},
+
         { category: "final" }//,
         //{ category: "practice_end" }
     ];

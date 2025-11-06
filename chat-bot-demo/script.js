@@ -28,7 +28,12 @@ const categoryOptions = {
     engagement_disclosure: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
     perception_SP: ["helemaal niet", "nauwelijks", "matig", "best wel", "zeer"],
 
-    perception_AN: null, //No options handled by slider
+    //perception_AN: null, //No options handled by slider
+    perception_AN1: ["onecht" , "beetje onecht", "neutraal", "beetje natuurlijk", "natuurlijk"],
+    perception_AN2: ["lijkend op een machine","beetje lijkend op een machine","neutraal","beetje lijkend op een mens","lijkend op een mens"],
+    perception_AN3: ["heeft geen bewustzijn", "heeft waarschijnlijk geen bewustzijn", "neutraal", "heeft waarschijnlijk een bewustzijn", "heeft een bewustzijn"],
+    perception_AN4: ["kunstmatig", "beetje kunstmatig", "neutraal", "beetje levensecht", "levensecht"],
+
     welcome: null, // No options for welcome
     submit: ["Tot ziens"],
     end: null
@@ -43,10 +48,10 @@ const questionBank = {
             "Hoi student, de onderzoekers zullen het zeker waarderen dat je weer reageert!",
             "Hallo student, de onderzoekers zullen het zeker waarderen dat je weer reageert 😊",
             "Hoi student, de onderzoekers zullen het zeker waarderen dat je weer reageert 😊",
-            "Hey hallo! Na ons gesprekje weer zullen de onderzoekers een nog beter beeld hebben van jullie welbevinden. Top 😊",
-            "Hey hallo! Na ons gesprekje weer zullen de onderzoekers een nog beter beeld hebben van jullie welbevinden. Top!",
-            "Ha student, na ons gesprekje weer zullen de onderzoekers een nog beter beeld hebben van jullie welbevinden. Top 😊",
-            "Ha student, na ons gesprekje zullen de onderzoekers een nog beter beeld hebben van jullie welbevinden. Top!",
+            "Hey hallo! Na ons gesprekje zullen de onderzoekers weer een nog beter beeld hebben van je welbevinden. Top 😊",
+            "Hey hallo! Na ons gesprekje zullen de onderzoekers weer een nog beter beeld hebben van je welbevinden. Top!",
+            "Ha student, na ons gesprekje zullen de onderzoekers weer een nog beter beeld hebben van je welbevinden. Top 😊",
+            "Ha student, na ons gesprekje zullen de onderzoekers weer een nog beter beeld hebben van je welbevinden. Top!",
             "Hey hallo je bent er weer, wat fijn 😊",
             "Hey hallo je bent er weer, wat fijn!",
             "Hey, je bent weer terug! Fijn dat je er bent 😊",
@@ -219,7 +224,13 @@ const conversationFlow = [
         { category: "engagement_burden" },
         { category: "engagement_disclosure" },
         { category: "perception_SP"},
-        { category: "perception_AN"},
+        //{ category: "perception_AN"}, //for slider options
+        { category: "perception_AN1"},
+        { category: "perception_AN2"},
+        { category: "perception_AN3"},
+        { category: "perception_AN4"},
+
+
         { category:  "thankyou"},
         { category: "submit" }//,
         //{ category: "end"}
@@ -438,7 +449,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 //inputField.disabled = false
             }
-            else if (main_category === "perception_AN")
+            /*else if (main_category === "perception_AN")
             {
 
                 // Disable text input
@@ -484,15 +495,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // On slider (submission)
                 slider.addEventListener("mouseup", () => handleSlider(sliderContainer));
                 slider.addEventListener("touchend", () => handleSlider(sliderContainer));
-
-                /*slider.onmouseup = function() {
-                    handleSlider(sliderContainer)
-                }
-
-                slider.touchend = function() {
-                    handleSlider(sliderContainer)
-                }*/
-            }
+            }*/
 
             //todo: do not take the input when..
             if(category == "welcome" || category == "instructions" || category == "thankyou" || category == "experience")
