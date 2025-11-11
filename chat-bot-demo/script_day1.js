@@ -102,10 +102,8 @@ const questionBank = {
         perception_SP3: ["Voelde het contact met het vragenlijstsysteem sociaal?"],
         perception_SP4: ["Voelde het contact met het vragenlijstsysteem warm?"],
 
-        perception_AN1: ["Geef je indruk weer van het vragenlijstsysteem:"],
-        perception_AN2: ["Geef je indruk weer van het vragenlijstsysteem:"],
-        perception_AN3: ["Geef je indruk weer van het vragenlijstsysteem:"],
-        perception_AN4: ["Geef je indruk weer van het vragenlijstsysteem:"],
+        perception_AN_mcq: ["Geef je indruk weer van het vragenlijstsysteem:"
+        ],
 
         final: ["We zijn door de oefen dagboekvragenlijst heen. Mocht je toch nog vragen hebben, kun je contact opnemen met jb9@ou.nl. Klik op 'Tot ziens' als je morgen graag wilt starten."
         ],
@@ -151,12 +149,8 @@ let conversationFlow = [
         { category: "engagement_burden" },
         { category: "engagement_disclosure" },
         { category: "perception_SP"},
-        //{ category: "perception_AN"},
-
-        { category: "perception_AN1"},
-        { category: "perception_AN2"},
-        { category: "perception_AN3"},
-        { category: "perception_AN4"},
+        //{ category: "perception_AN"}, //for slider
+        {category: "perception_AN_mcq"},
 
         { category: "final" }//,
         //{ category: "practice_end" }
@@ -187,17 +181,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const notification_time = `${year}-${month}-${day} ${hours}:${minutes}`;
 
 
-    function getRandomQuestion(category) {
-        const questions = questionBank[category];
-        let index = Math.floor(Math.random() * questions.length);
-        if (index >= questions.length || index < 0)
-            index = 0;
-        return questions[index];
+    function getRandomQuestion(questions) {
+        randomQuestion = questions[0]
+        const selectedQuestions = [];
+        while (selectedQuestions.length < 1 && selectedQuestions.length < questions.length) {
+            randomQuestion = questions[Math.floor(Math.random() * questions.length)];
+            if (!selectedQuestions.includes(randomQuestion)) {
+                selectedQuestions.push(randomQuestion);
+            }
+        }
+        return randomQuestion
     }
 
     function askNextQuestion(msg_delay = 2000) {
         //chooses the category
         let [main_category,category] = chooseCategory();
+
         //displays the question
         displayQuestion(main_category, category, msg_delay)
     }
@@ -262,6 +261,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     category = sub_categories[Math.floor(Math.random() * sub_categories.length)];
                     conversationStep= conversationStep + 1; // Move to the next step
                 }
+                else if(conversationFlow[conversationStep].category === "perception_AN_mcq"){
+                    const sub_categories = [
+                    "perception_AN1",
+                    "perception_AN2",
+                    "perception_AN3",
+                    "perception_AN4"
+                    ];
+                    main_category = "perception_AN_mcq"
+                    category = sub_categories[Math.floor(Math.random() * sub_categories.length)];
+                    conversationStep= conversationStep + 1; // Move to the next step
+                }
 
                 else {
                     category = conversationFlow[conversationStep].category;
@@ -270,7 +280,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
             }
-
             return [main_category,category];
     }
     function chooseSliderValue(category){
@@ -322,65 +331,10 @@ document.addEventListener("DOMContentLoaded", () => {
           //tooltip.style.left = `${tooltipLeft}px`;
 
     }
-    function displayQuestion(main_category, category, delay = 2000){
-    /*
-        main category = perception_AN
-        then category = perception_AN1 and so on
-        delay controls the number of seconds to display the next question
-    */
-    // Get random questions from the category
-        const questions = questionBank[category];
-        if (!questions || questions.length === 0) return; // Safety check
-
-        const selectedQuestions = [];
-        while (selectedQuestions.length < 2 && selectedQuestions.length < questions.length) {
-            const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
-            if (!selectedQuestions.includes(randomQuestion)) {
-                selectedQuestions.push(randomQuestion);
-            }
-        }
-
-        //setting custom delay for specific messages
-        if (category == "welcome")
-            delay = 2000
-        else if (category == "welcome2")
-            delay = 4000
-        else if (category == "welcome3")
-            delay = 16000
-        else if (category == "welcome4")
-            delay = 9000
-        else if (category == "welcome5")
-            delay = 19000
-        else if (category == "welcome6")
-            delay = 10000
-        else if (category == "welcome7")
-            delay = 10000
-        else if (category == "practice")
-            delay = 19000
-        else if (category == "company")
-            delay = 5000
-
-        showTypingIndicator(() => { //this would use ... to be displayed
-            let questionText = getRandomQuestion(category);
-            //make the div for question
-            const botMessage = document.createElement("div");
-            botMessage.classList.add("chat-message", "bot-message");
-            //modifying category to make bot message unique
-            id = 'b_'+ category
-
-            //appending question and image in html
-            botMessage.innerHTML = `<div class="chat-message-text">
-                                <div>
-                                <img src= "images/avatar.png"> </div>
-                                <div id = ${id}> ${questionText} </div>
-                                </div>`;
-
-            messageList.appendChild(botMessage);
-
-
-            // Check if the category has options
-            const options = categoryOptions[main_category];
-            if (options)
+    function lookforOptions(main_category, category){
+        //this function look for options
+        const options = categoryOptions[category];
+        if (options)
             {
 
                 //If there are available options then dont allow the users for the open input
@@ -400,8 +354,76 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 messageList.appendChild(optionsContainer);
+        }
+    }
+    function displayQuestion(main_category, category, delay = 2000){
+    /*
+        main category = perception_AN
+        then category = perception_AN1 and so on
+        delay controls the number of seconds to display the next question
+    */
+
+    //setting custom delay for specific messages
+        if (category == "welcome")
+            delay = 2000
+        else if (category == "welcome2")
+            delay = 4000
+        else if (category == "welcome3")
+            delay = 16000
+        else if (category == "welcome4")
+            delay = 9000
+        else if (category == "welcome5")
+            delay = 19000
+        else if (category == "welcome6")
+            delay = 10000
+        else if (category == "welcome7")
+            delay = 10000
+        else if (category == "practice")
+            delay = 19000
+        else if (category == "company")
+            delay = 5000
+
+    // Get random questions from the category
+        questions = questionBank[category];
+        if (!questions || questions.length === 0)
+        {
+            questions = questionBank[main_category];
+            if (!questions || questions.length === 0)
+            {
+                console.log("questions not found")
+                return; // Safety check
             }
-            else if (main_category === "perception_AN")
+        }
+
+        showTypingIndicator(() => { //this would use ... to be displayed
+            let questionText = getRandomQuestion(questions);
+            //make the div for question
+            const botMessage = document.createElement("div");
+            botMessage.classList.add("chat-message", "bot-message");
+            //modifying category to make bot message unique
+            id = 'b_'+ category
+
+            //appending question and image in html
+            botMessage.innerHTML = `<div class="chat-message-text">
+                                <div>
+                                <img src= "images/avatar.png"> </div>
+                                <div id = ${id}> ${questionText} </div>
+                                </div>`;
+
+            messageList.appendChild(botMessage);
+
+            // Check if the main_category has options
+            const options = categoryOptions[main_category];
+            if (options)
+            {
+                lookforOptions(main_category, main_category)
+            }
+            else if (main_category === "perception_AN_mcq")
+            {
+                sub_category = category
+                lookforOptions(main_category, sub_category)
+            }
+            else if (main_category === "perception_AN") //slider
             {
 
                 // Disable text input
@@ -471,7 +493,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Auto-scroll to latest message
                 messageList.scrollTop = messageList.scrollHeight;
             }
-
         }, delay); // showTypingIndicator(()
     }
 
@@ -650,7 +671,22 @@ document.addEventListener("DOMContentLoaded", () => {
        messagesSTR = '';
        messagesJSON = [];
        for (const key in questionBank) {
-            if (!key.includes("welcome")) {
+            if(key.includes("perception_AN_mcq"))
+            {
+             const ids = ["perception_AN1", "perception_AN2", "perception_AN3", "perception_AN4"];
+             ids.forEach(id => {
+                const userResponseElement = document.getElementById(id);
+                if (userResponseElement) {
+                    console.log(`✅ Element found: ${id}`, userResponseElement);
+                    value = userResponseElement.textContent
+                        messagesJSON.push({
+                           id: id,
+                            value: userResponseElement.textContent
+                        });
+                }
+                });
+            }
+            else if (!key.includes("welcome")) {
                 const userResponseElement = document.getElementById(key);
                 if (userResponseElement)
                 {
@@ -678,6 +714,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     messagesSTR = messagesSTR + ','+  value
 
             }
+
        }    //for (const key in questionBank) {
        //Storing Timestamp
        now   = new Date(); // → a Date instance
