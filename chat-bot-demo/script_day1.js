@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     //Storing notification_time
-    now   = new Date(); // → a Date instance
+    let now = new Date();
 
     const year = String(now.getFullYear()).slice(-2); // last 2 digits
     const month = String(now.getMonth() + 1).padStart(2, '0'); // 0-indexed
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function getRandomQuestion(questions) {
-        randomQuestion = questions[0]
+        let randomQuestion = questions[0]
         const selectedQuestions = [];
         while (selectedQuestions.length < 1 && selectedQuestions.length < questions.length) {
             randomQuestion = questions[Math.floor(Math.random() * questions.length)];
@@ -384,7 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
             delay = 5000
 
     // Get random questions from the category
-        questions = questionBank[category];
+        let questions = questionBank[category];
         if (!questions || questions.length === 0)
         {
             questions = questionBank[main_category];
@@ -401,7 +401,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const botMessage = document.createElement("div");
             botMessage.classList.add("chat-message", "bot-message");
             //modifying category to make bot message unique
-            id = 'b_'+ category
+            let id = 'b_'+ category
 
             //appending question and image in html
             botMessage.innerHTML = `<div class="chat-message-text">
@@ -420,7 +420,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             else if (main_category === "perception_AN_mcq")
             {
-                sub_category = category
+                let sub_category = category
                 lookforOptions(main_category, sub_category)
             }
             else if (main_category === "perception_AN") //slider
@@ -552,9 +552,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function handleUserOption(selectedOption,optionButton, category) {
         // Create a user message bubble with the selected option
         //here category is equal to the questionID received below, so maybe optimization needed
-        lastQuestionid = getQuestionID()
+        let lastQuestionid = getQuestionID()
         //Extract the id from b_
-        optionid = lastQuestionid.substring(2,lastQuestionid.length)
+        let optionid = lastQuestionid.substring(2,lastQuestionid.length)
 
 
         const userMessage = document.createElement("div");
@@ -611,6 +611,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //get last bot message element
         const botMessages = document.querySelectorAll("#chat-box .bot-message");
         const lastBotMessage = botMessages[botMessages.length - 1]; // Get the last bot message
+        if (!lastBotMessage) return null;
         const lastBotMessageTextElement = lastBotMessage.querySelector(".chat-message-text div:last-child"); // Last child div with text
         const lastBotMessageText = lastBotMessageTextElement ? lastBotMessageTextElement.innerText : "";
         const lastMessageId = lastBotMessageTextElement ? lastBotMessageTextElement.id : null;
@@ -623,9 +624,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!inputField.value.trim()) return;  // Prevent sending empty messages
 
         //changing id of user message.
-        lastMessageId = getQuestionID()
+        let lastMessageId = getQuestionID()
         //Extract the id from b_
-        id = lastMessageId.substring(2,lastMessageId.length)
+        let id = lastMessageId.substring(2,lastMessageId.length)
 
         const userMessage = document.createElement("div");
         userMessage.classList.add("chat-message", "user-message");
@@ -668,8 +669,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function saveUserData(){
         // Check if a user response exists for each perception_AN key
        // Build JSON array of message data from user message
-       messagesSTR = '';
-       messagesJSON = [];
+       let messagesSTR = '';
+       let messagesJSON = [];
        for (const key in questionBank) {
             if(key.includes("perception_AN_mcq"))
             {
@@ -678,7 +679,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const userResponseElement = document.getElementById(id);
                 if (userResponseElement) {
                     console.log(`✅ Element found: ${id}`, userResponseElement);
-                    value = userResponseElement.textContent
+                    let value = userResponseElement.textContent
                         messagesJSON.push({
                            id: id,
                             value: userResponseElement.textContent
@@ -690,7 +691,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const userResponseElement = document.getElementById(key);
                 if (userResponseElement)
                 {
-                    value = userResponseElement.textContent
+                    let value = userResponseElement.textContent
                     messagesJSON.push({
                        id: key,
                         value: userResponseElement.textContent
@@ -699,7 +700,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 else
                 {
-                    value = 'NA'
+                    let value = 'NA'
                     messagesJSON.push({
                        id: key,
                        value: 'NA'
@@ -717,7 +718,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
        }    //for (const key in questionBank) {
        //Storing Timestamp
-       now   = new Date(); // → a Date instance
+       let now   = new Date(); // → a Date instance
 
        // Extract components
        const year = String(now.getFullYear()).slice(-2); // last 2 digits
