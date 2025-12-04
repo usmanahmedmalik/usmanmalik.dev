@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let isSecondUserInput = true;    // Track if second user input has been sent
 
     //Storing notification_time
-    let now   = new Date(); // → a Date instance
+    now   = new Date(); // → a Date instance
 
     const year = String(now.getFullYear()).slice(-2); // last 2 digits
     const month = String(now.getMonth() + 1).padStart(2, '0'); // 0-indexed
@@ -253,7 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const notification_time = `${year}-${month}-${day} ${hours}:${minutes}`;
 
     function getRandomQuestion(questions) {
-        let randomQuestion = questions[0]
+        randomQuestion = questions[0]
         const selectedQuestions = [];
         while (selectedQuestions.length < 1 && selectedQuestions.length < questions.length) {
             randomQuestion = questions[Math.floor(Math.random() * questions.length)];
@@ -434,7 +434,7 @@ document.addEventListener("DOMContentLoaded", () => {
         delay controls the number of seconds to display the next question
     */
     // Get random questions from the category
-        let questions = questionBank[category];
+        questions = questionBank[category];
         if (!questions || questions.length === 0)
         {
             questions = questionBank[main_category];
@@ -449,7 +449,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const botMessage = document.createElement("div");
             botMessage.classList.add("chat-message", "bot-message");
             //modifying category to make bot message unique
-            let id = 'b_'+ category
+            id = 'b_'+ category
 
             //appending question and image in html
             botMessage.innerHTML = `<div class="chat-message-text">
@@ -468,7 +468,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             else if (main_category === "perception_AN_mcq")
             {
-                let sub_category = category
+                sub_category = category
                 lookforOptions(main_category, sub_category)
             }
             else if (main_category === "perception_AN")
@@ -588,9 +588,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function handleUserOption(selectedOption,optionButton, category) {
         // Create a user message bubble with the selected option
-        let lastQuestionid = getQuestionID()
+        lastQuestionid = getQuestionID()
         //Extract the id from b_
-        let id = lastQuestionid.substring(2,lastQuestionid.length)
+        id = lastQuestionid.substring(2,lastQuestionid.length)
 
 
         const userMessage = document.createElement("div");
@@ -635,7 +635,6 @@ document.addEventListener("DOMContentLoaded", () => {
         //get last bot message element
         const botMessages = document.querySelectorAll("#chat-box .bot-message");
         const lastBotMessage = botMessages[botMessages.length - 1]; // Get the last bot message
-        if (!lastBotMessage) return null;
         const lastBotMessageTextElement = lastBotMessage.querySelector(".chat-message-text div:last-child"); // Last child div with text
         const lastBotMessageText = lastBotMessageTextElement ? lastBotMessageTextElement.innerText : "";
         const lastMessageId = lastBotMessageTextElement ? lastBotMessageTextElement.id : null;
@@ -648,9 +647,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!inputField.value.trim()) return;  // Prevent sending empty messages
 
         //changing id of user message.
-        let lastMessageId = getQuestionID()
+        lastMessageId = getQuestionID()
         //Extract the id from b_
-        let id = lastMessageId.substring(2,lastMessageId.length)
+        id = lastMessageId.substring(2,lastMessageId.length)
 
         const userMessage = document.createElement("div");
         userMessage.classList.add("chat-message", "user-message");
@@ -691,8 +690,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function saveUserData(){
         // Check if a user response exists for each perception_AN key
        // Build JSON array of message data from user message
-       let messagesSTR = '';
-       let messagesJSON = [];
+       messagesSTR = '';
+       messagesJSON = [];
        for (const key in questionBank) {
              if(key.includes("perception_AN_mcq"))
             {
@@ -701,7 +700,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const userResponseElement = document.getElementById(id);
                 if (userResponseElement) {
                     console.log(`✅ Element found: ${id}`, userResponseElement);
-                    let value = userResponseElement.textContent
+                    value = userResponseElement.textContent
                         messagesJSON.push({
                            id: id,
                             value: userResponseElement.textContent
@@ -713,7 +712,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const userResponseElement = document.getElementById(key);
                 if (userResponseElement)
                 {
-                    let value = userResponseElement.textContent
+                    value = userResponseElement.textContent
                     messagesJSON.push({
                        id: key,
                         value: userResponseElement.textContent
@@ -722,7 +721,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 else
                 {
-                    let value = 'NA'
+                    value = 'NA'
                     messagesJSON.push({
                        id: key,
                        value: 'NA'
@@ -739,7 +738,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
        }    //for (const key in questionBank) {
        //Storing Timestamp
-       let now   = new Date(); // → a Date instance
+       now   = new Date(); // → a Date instance
 
        // Extract components
        const year = String(now.getFullYear()).slice(-2); // last 2 digits
