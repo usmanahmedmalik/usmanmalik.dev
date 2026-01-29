@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspiring Quran - Laravel Package</title>
+    <meta name="description" content="A powerful Laravel package delivering 75+ curated Quranic verses in 7 different languages with 13 beautiful visual themes.">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                        display: ['Playfair Display', 'serif'],
+                        arabic: ['Amiri', 'serif'],
+                    },
+                    colors: {
+                        primary: '#0f172a',
+                        accent: '#10b981',
+                        laravel: '#FF2D20',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&family=Fira+Code&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        [x-cloak] { display: none !important; }
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #10b981, #3b82f6);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center text-slate-500 hover:text-slate-900 transition text-sm font-medium">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Back to Portfolio
+            </a>
+            
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com/usmanahmedmalik/InspiringQuran" target="_blank" class="text-slate-400 hover:text-slate-900 transition">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a href="https://packagist.org/packages/usmanahmedmalik/inspiring-quran" class="px-4 py-2 bg-laravel text-white rounded-lg text-sm font-bold hover:bg-red-600 transition shadow-lg shadow-red-200">
+                    v1.1.0
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-20 pb-20 md:pt-32 md:pb-24 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-emerald-50 to-transparent opacity-50"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold uppercase tracking-wide mb-6">
+                Laravel Package
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold font-display text-slate-900 mb-6 tracking-tight">
+                Inspiring <span class="gradient-text">Quran</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-500 max-w-2xl mx-auto mb-10 font-light">
+                Forever-proof Quranic inspiration for your Laravel applications. Zero dependencies. Beautifully curated.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <div class="bg-slate-800 text-slate-200 px-6 py-4 rounded-lg font-mono text-sm shadow-xl flex items-center">
+                    <span class="text-emerald-400 mr-2">$</span> composer require usmanahmedmalik/inspiring-quran
+                    <button onclick="navigator.clipboard.writeText('composer require usmanahmedmalik/inspiring-quran')" class="ml-4 text-slate-400 hover:text-white transition" title="Copy">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20 bg-slate-50" id="live-demo" x-data="quranDemo()">
+        <div class="container mx-auto px-6">
+            
+            <div class="text-center mb-16">
+                <span class="text-emerald-600 font-bold tracking-wider uppercase text-sm">Interactive Demo</span>
+                <h2 class="text-3xl md:text-4xl font-bold font-display text-slate-900 mt-2 mb-4">Try It Live</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Experience the package capabilities right here. Select a theme or language to see how it works in your application.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100 max-w-5xl mx-auto">
+                <div class="grid md:grid-cols-12 min-h-[500px]">
+                    <div class="md:col-span-4 bg-slate-50 p-6 md:p-8 border-r border-slate-100 flex flex-col">
+                        
+                        <div class="mb-8">
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Language</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <template x-for="lang in languages" :key="lang.code">
+                                    <button 
+                                        @click="setLanguage(lang.code)"
+                                        :class="currentLanguage === lang.code ? 'bg-emerald-100 text-emerald-700 border-emerald-200' : 'bg-white text-slate-600 border-slate-200 hover:border-emerald-200 hover:text-emerald-600'"
+                                        class="px-3 py-2 rounded-lg text-sm font-medium border transition-all text-left flex items-center justify-between"
+                                    >
+                                        <span x-text="lang.name"></span>
+                                        <span x-show="currentLanguage === lang.code" class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                    </button>
+                                </template>
+                            </div>
+                        </div>
+
+                        <div class="mb-8 flex-grow">
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Theme</label>
+                            <select 
+                                x-model="currentTheme" 
+                                @change="setTheme(currentTheme)"
+                                class="w-full bg-white border border-slate-200 text-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition"
+                            >
+                                <option value="random">Random Theme</option>
+                                <template x-for="theme in themes" :key="theme">
+                                    <option :value="theme" x-text="theme.charAt(0).toUpperCase() + theme.slice(1)"></option>
+                                </template>
+                            </select>
+                        </div>
+
+                        <button 
+                            @click="getRandomAyat()"
+                            class="w-full py-4 bg-slate-900 text-white rounded-xl font-bold shadow-lg hover:bg-emerald-600 hover:shadow-emerald-200 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center group"
+                        >
+                            <svg class="w-5 h-5 mr-2 text-emerald-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                            Generate Random Ayat
+                        </button>
+                    </div>
+
+                    <div class="md:col-span-8 p-8 md:p-12 flex flex-col justify-center relative bg-white">
+                        
+                        <div class="absolute top-0 right-0 p-32 opacity-5 bg-emerald-500 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+                        <div class="absolute bottom-0 left-0 p-24 opacity-5 bg-blue-500 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
+
+                        <div x-show="loading" class="absolute inset-0 flex items-center justify-center bg-white/80 z-10 transition-opacity" x-transition.opacity>
+                            <div class="flex flex-col items-center">
+                                <div class="w-12 h-12 border-4 border-emerald-100 border-t-emerald-500 rounded-full animate-spin mb-4"></div>
+                                <span class="text-emerald-600 font-medium text-sm animate-pulse">Reflecting...</span>
+                            </div>
+                        </div>
+
+                        <div class="relative z-0" x-show="!loading" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+                            <div class="flex items-center justify-between mb-8">
+                                <span 
+                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide border"
+                                    :class="{
+                                        'bg-emerald-50 text-emerald-700 border-emerald-100': currentAyat.theme === 'hope' || currentAyat.theme === 'mercy' || currentAyat.theme === 'peace' || currentAyat.theme === 'gratitude' || currentAyat.theme === 'paradise',
+                                        'bg-blue-50 text-blue-700 border-blue-100': currentAyat.theme === 'trust' || currentAyat.theme === 'guidance' || currentAyat.theme === 'knowledge' || currentAyat.theme === 'prayer',
+                                        'bg-amber-50 text-amber-700 border-amber-100': currentAyat.theme === 'patience' || currentAyat.theme === 'strength' || currentAyat.theme === 'tests',
+                                        'bg-purple-50 text-purple-700 border-purple-100': currentAyat.theme === 'change' || currentAyat.theme === 'unity' || currentAyat.theme === 'forgiveness',
+                                        'bg-red-50 text-red-700 border-red-100': currentAyat.theme === 'accountability' || currentAyat.theme === 'justice'
+                                    }"
+                                >
+                                    <span class="w-2 h-2 rounded-full mr-2 bg-current opacity-50"></span>
+                                    <span x-text="currentAyat.theme"></span>
+                                </span>
+
+                                <button @click="copyAyat()" class="text-slate-400 hover:text-emerald-600 transition flex items-center text-xs font-medium group">
+                                    <span x-text="copied ? 'Copied!' : 'Copy Text'" class="mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                </button>
+                            </div>
+
+                            <div class="mb-10 text-right">
+                                <p class="font-arabic text-3xl md:text-5xl leading-loose md:leading-relaxed text-slate-800" dir="rtl" x-text="currentAyat.arabic"></p>
+                            </div>
+
+                            <div class="mb-8">
+                                <p 
+                                    class="text-xl md:text-2xl font-display text-slate-600 leading-relaxed italic" 
+                                    x-text="currentAyat.translations[currentLanguage]"
+                                    :dir="['ur', 'ar'].includes(currentLanguage) ? 'rtl' : 'ltr'"
+                                ></p>
+                            </div>
+
+                            <div class="flex items-center border-t border-slate-100 pt-6">
+                                <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 mr-4">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 6.253v13C13.168 18.477 14.754 18 16.5 18c1.746 0 3.332.477 4.5 1.253v-13C19.832 5.477 18.247 5 16.5 5c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-900" x-text="currentAyat.reference"></p>
+                                    <p class="text-xs text-slate-500 uppercase tracking-wide">Holy Quran</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-4xl mx-auto">
+                <div class="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                    <div class="text-2xl font-bold text-slate-900 mb-1">75+</div>
+                    <div class="text-xs text-slate-500 font-medium uppercase tracking-wide">Curated Verses</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                    <div class="text-2xl font-bold text-slate-900 mb-1">13</div>
+                    <div class="text-xs text-slate-500 font-medium uppercase tracking-wide">Inspiring Themes</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                    <div class="text-2xl font-bold text-slate-900 mb-1">7</div>
+                    <div class="text-xs text-slate-500 font-medium uppercase tracking-wide">Languages</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-100 text-center">
+                    <div class="text-2xl font-bold text-slate-900 mb-1">Zero</div>
+                    <div class="text-xs text-slate-500 font-medium uppercase tracking-wide">Dependencies</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        function quranDemo() {
+            return {
+                loading: false,
+                currentTheme: 'random',
+                currentLanguage: 'en',
+                copied: false,
+                themes: ['hope', 'mercy', 'patience', 'gratitude', 'prayer', 'peace', 'strength', 'change', 'trust', 'unity', 'accountability', 'provision', 'guidance'],
+                languages: [
+                    { code: 'en', name: 'English' },
+                    { code: 'nl', name: 'Dutch' },
+                    { code: 'fr', name: 'French' },
+                    { code: 'tr', name: 'Turkish' },
+                    { code: 'ur', name: 'Urdu' },
+                    { code: 'de', name: 'German' },
+                    { code: 'es', name: 'Spanish' },
+                ],
+                ayats: [
+                    {
+                        arabic: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا",
+                        theme: "hope",
+                        reference: "Surah Ash-Sharh (94:5-6)",
+                        translations: {
+                            en: "For indeed, with hardship comes ease.",
+                            nl: "Voorwaar, met de moeilijkheid komt de verlichting.",
+                            fr: "A côté de la difficulté est, certes, une facilité!",
+                            tr: "Demek ki, zorlukla beraber bir kolaylık vardır.",
+                            ur: "پس یقیناً مشکل کے ساتھ آسانی ہے۔",
+                            de: "Denn wahrlich, mit der Erschwernis kommt die Erleichterung.",
+                            es: "Porque ciertamente con la dificultad viene la facilidad."
+                        }
+                    },
+                    {
+                        arabic: "وَرَحْمَتِي وَسِعَتْ كُلَّ شَيْءٍ",
+                        theme: "mercy",
+                        reference: "Surah Al-A'raf (7:156)",
+                        translations: {
+                            en: "And My mercy encompasses all things.",
+                            nl: "En Mijn Barmhartigheid omvat alle dingen.",
+                            fr: "Et Ma miséricorde embrasse toute chose.",
+                            tr: "Rahmetim ise her şeyi kuşatmıştır.",
+                            ur: "اور میری رحمت ہر چیز پر محیط ہے۔",
+                            de: "Und Meine Barmherzigkeit umfasst alles.",
+                            es: "Y Mi misericordia abarca todas las cosas."
+                        }
+                    },
+                    {
+                        arabic: "إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+                        theme: "patience",
+                        reference: "Surah Al-Baqarah (2:153)",
+                        translations: {
+                            en: "Indeed, Allah is with the patient.",
+                            nl: "Voorwaar, Allah is met de geduldigen.",
+                            fr: "Allah est certes avec les endurants.",
+                            tr: "Şüphesiz Allah sabredenlerle beraberdir.",
+                            ur: "بیشک اللہ صبر کرنے والوں کے ساتھ ہے۔",
+                            de: "Wahrlich, Allah ist mit den Geduldigen.",
+                            es: "Ciertamente, Allah está con los pacientes."
+                        }
+                    },
+                    {
+                        arabic: "لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+                        theme: "gratitude",
+                        reference: "Surah Ibrahim (14:7)",
+                        translations: {
+                            en: "If you are grateful, I will surely increase you.",
+                            nl: "Als jullie dankbaar zijn, zal Ik zeker (Mijn gunsten) voor jullie vermeerderen.",
+                            fr: "Si vous êtes reconnaissants, très certainement J'augmenterai [Mes bienfaits] pour vous.",
+                            tr: "Andolsun, eğer şükrederseniz elbette size nimetimi artırırım.",
+                            ur: "اگر تم شکر گزار بنو گے تو میں تمہیں اور زیادہ دوں گا۔",
+                            de: "Wenn ihr dankbar seid, werde Ich euch sicher mehr geben.",
+                            es: "Si sois agradecidos, ciertamente os daré más."
+                        }
+                    },
+                    {
+                        arabic: "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+                        theme: "peace",
+                        reference: "Surah Ar-Ra'd (13:28)",
+                        translations: {
+                            en: "Unquestionably, by the remembrance of Allah hearts are assured.",
+                            nl: "Weet: door het gedenken van Allah komen de harten tot rust.",
+                            fr: "N'est-ce pas que c'est par l'évocation d'Allah que se tranquillisent les cœurs?",
+                            tr: "Bilesiniz ki, kalpler ancak Allah'ı anmakla huzur bulur.",
+                            ur: "خبردار! اللہ کے ذکر سے ہی دلوں کو اطمینان نصیب ہوتا ہے۔",
+                            de: "Sicherlich, im Gedenken Allahs finden die Herzen Ruhe.",
+                            es: "Ciertamente, en el recuerdo de Allah los corazones encuentran sosiego."
+                        }
+                    },
+                    {
+                        arabic: "وَكَفَىٰ بِاللَّهِ وَكِيلًا",
+                        theme: "trust",
+                        reference: "Surah An-Nisa (4:81)",
+                        translations: {
+                            en: "And sufficient is Allah as Disposer of affairs.",
+                            nl: "En Allah is voldoende als Beschermer.",
+                            fr: "Et Allah suffit comme Protecteur.",
+                            tr: "Vekil olarak Allah yeter.",
+                            ur: "اور اللہ کافی ہے کارساز۔",
+                            de: "Und Allah genügt als Sachwalter.",
+                            es: "Y Allah es suficiente como Protector."
+                        }
+                    },
+                    {
+                        arabic: "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
+                        theme: "strength",
+                        reference: "Surah Al-Baqarah (2:286)",
+                        translations: {
+                            en: "Allah does not burden a soul beyond that it can bear.",
+                            nl: "Allah belast niemand dan volgens zijn vermogen.",
+                            fr: "Allah n'impose à aucune âme une charge supérieure à sa capacité.",
+                            tr: "Allah hiç kimseye gücünün yettiğinden fazlasını yüklemez.",
+                            ur: "اللہ کسی جان پر اس کی طاقت سے بڑھ کر بوجھ نہیں ڈالتا۔",
+                            de: "Allah erlegt keiner Seele mehr auf, als sie zu leisten vermag.",
+                            es: "Allah no carga a ningún alma más allá de su capacidad."
+                        }
+                    },
+                    {
+                        arabic: "وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ",
+                        theme: "unity",
+                        reference: "Surah Al-Ma'idah (5:2)",
+                        translations: {
+                            en: "And cooperate in righteousness and piety.",
+                            nl: "En help elkaar in het goede en de vroomheid.",
+                            fr: "Entraidez-vous dans l'accomplissement des bonnes œuvres et de la piété.",
+                            tr: "İyilik ve takva (Allah'a karşı gelmekten sakınma) üzere yardımlaşın.",
+                            ur: "اور نیکی اور پرہیزگاری کے کاموں میں ایک دوسرے کی مدد کیا کرو۔",
+                            de: "Und helft einander in Rechtschaffenheit und Frömmigkeit.",
+                            es: "Y colaborad en la justicia y la piedad."
+                        }
+                    },
+                    {
+                        arabic: "ادْعُونِي أَسْتَجِبْ لَكُمْ",
+                        theme: "prayer",
+                        reference: "Surah Ghafir (40:60)",
+                        translations: {
+                            en: "Call upon Me; I will respond to you.",
+                            nl: "Roep Mij aan, Ik zal jullie verhoren.",
+                            fr: "Invoquez-Moi, Je vous répondrai.",
+                            tr: "Bana dua edin, size icabet edeyim.",
+                            ur: "مجھ سے دعا کرو، میں تمہاری دعا قبول کروں گا۔",
+                            de: "Ruft Mich an, Ich werde euch erhören.",
+                            es: "Invocadme, que os responderé."
+                        }
+                    },
+                    {
+                        arabic: "وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا",
+                        theme: "provision",
+                        reference: "Surah At-Talaq (65:2)",
+                        translations: {
+                            en: "And whoever fears Allah - He will make for him a way out.",
+                            nl: "En wie Allah vreest, die zal Hij een uitweg bieden.",
+                            fr: "Et quiconque craint Allah, Il lui donnera une issue favorable.",
+                            tr: "Kim Allah'tan korkarsa, Allah ona bir çıkış yolu ihsan eder.",
+                            ur: "اور جو اللہ سے ڈرتا ہے اللہ اس کے لیے (مشکلات سے) نکلنے کا راستہ بنا دیتا ہے۔",
+                            de: "Und wer Allah fürchtet, dem schafft Er einen Ausweg.",
+                            es: "Y a quien teme a Allah, Él le dará una salida."
+                        }
+                    },
+                    {
+                        arabic: "إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنفُسِهِمْ",
+                        theme: "change",
+                        reference: "Surah Ar-Ra'd (13:11)",
+                        translations: {
+                            en: "Indeed, Allah will not change the condition of a people until they change what is in themselves.",
+                            nl: "Voorwaar, Allah verandert de toestand van een volk niet, totdat zij hun eigen toestand veranderen.",
+                            fr: "En vérité, Allah ne modifie point l'état d'un peuple, tant que les [individus qui le composent] ne modifient pas ce qui est en eux-mêmes.",
+                            tr: "Şüphesiz ki, bir kavim kendi durumunu değiştirmedikçe Allah onların durumunu değiştirmez.",
+                            ur: "بیشک اللہ کسی قوم کی حالت نہیں بدلتا جب تک وہ خود اپنی حالت نہ بدل لیں۔",
+                            de: "Wahrlich, Allah ändert nicht den Zustand eines Volkes, bis sie das ändern, was in ihnen selbst ist.",
+                            es: "Ciertamente, Allah no cambia la condición de un pueblo hasta que ellos cambian lo que hay en sí mismos."
+                        }
+                    },
+                    {
+                        arabic: "وَقُل رَّبِّ زِدْنِي عِلْمًا",
+                        theme: "guidance",
+                        reference: "Surah Taha (20:114)",
+                        translations: {
+                            en: "And say, 'My Lord, increase me in knowledge.'",
+                            nl: "En zeg: 'Mijn Heer, vermeerder mijn kennis.'",
+                            fr: "Et dis: «O mon Seigneur, accroît mes connaissances!»",
+                            tr: "Ve de ki: 'Rabbim! İlmimi artır.'",
+                            ur: "اور کہو: اے میرے رب! مجھے علم میں زیادتی عطا فرما۔",
+                            de: "Und sag: 'Mein Herr, mehre mein Wissen.'",
+                            es: "Y di: '¡Señor mío! Aumenta mi conocimiento'."
+                        }
+                    }
+                ],
+                currentAyat: {},
+                
+                init() {
+                    this.getRandomAyat();
+                },
+
+                setLanguage(code) {
+                    this.currentLanguage = code;
+                },
+
+                setTheme(theme) {
+                    this.currentTheme = theme;
+                    this.getRandomAyat();
+                },
+
+                getRandomAyat() {
+                    this.loading = true;
+                    setTimeout(() => {
+                        let filtered = this.ayats;
+                        
+                        if (this.currentTheme !== 'random') {
+                            filtered = this.ayats.filter(a => a.theme === this.currentTheme);
+                            // If no ayats found for theme (fallback), use all
+                            if (filtered.length === 0) filtered = this.ayats;
+                        }
+
+                        // Pick random from filtered, but try to avoid same one if possible
+                        let nextAyat;
+                        do {
+                           nextAyat = filtered[Math.floor(Math.random() * filtered.length)];
+                        } while (filtered.length > 1 && nextAyat === this.currentAyat);
+                        
+                        this.currentAyat = nextAyat;
+                        this.loading = false;
+                    }, 400); // Small delay for visual effect
+                },
+                
+                copyAyat() {
+                    const text = `"${this.currentAyat.translations[this.currentLanguage]}" - ${this.currentAyat.reference}`;
+                    navigator.clipboard.writeText(text).then(() => {
+                        this.copied = true;
+                        setTimeout(() => this.copied = false, 2000);
+                    });
+                }
+            }
+        }
+    </script>
+
+    <section class="py-20 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-20">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">7 Languages</h3>
+                    <p class="text-slate-600">English, Dutch, French, Turkish, Urdu, German, and Spanish translations included out of the box.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">13 Visual Themes</h3>
+                    <p class="text-slate-600">Beautifully designed output themes ranging from minimalist to colorful, perfect for CLI or logs.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600 mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Zero Dependencies</h3>
+                    <p class="text-slate-600">Lightweight and fast. No external API calls, works completely offline and respects your app's performance.</p>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-900 mb-8">Usage Examples</h2>
+                
+                <div class="space-y-12">
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
+                            <span class="w-6 h-6 bg-slate-200 rounded-full flex items-center justify-center text-xs mr-3 font-mono">1</span>
+                            Display a random verse
+                        </h3>
+                        <div class="rounded-lg overflow-hidden shadow-lg">
+                            <pre><code class="language-php">use UsmanAhmedMalik\InspiringQuran\InspiringQuran;
+
+// Returns a random verse object
+$verse = InspiringQuran::random();
+
+echo $verse->text; 
+// "Verily, with hardship comes ease."
+
+echo $verse->reference; 
+// "Surah Ash-Sharh (94:6)"</code></pre>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
+                            <span class="w-6 h-6 bg-slate-200 rounded-full flex items-center justify-center text-xs mr-3 font-mono">2</span>
+                            Artisan Console Command
+                        </h3>
+                        <div class="rounded-lg overflow-hidden shadow-lg">
+                            <pre><code class="language-bash">php artisan inspire:quran</code></pre>
+                        </div>
+                        <div class="mt-4 p-4 bg-slate-900 text-emerald-400 font-mono text-sm rounded-lg border border-slate-800">
+                            "And whoever relies upon Allah - then He is sufficient for him."<br>
+                            <span class="text-slate-500">- Surah At-Talaq (65:3)</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center">
+                            <span class="w-6 h-6 bg-slate-200 rounded-full flex items-center justify-center text-xs mr-3 font-mono">3</span>
+                            Specific Language & Theme
+                        </h3>
+                        <div class="rounded-lg overflow-hidden shadow-lg">
+                            <pre><code class="language-php">// Get a verse in Dutch
+$verse = InspiringQuran::language('nl')->random();
+
+// Get a verse about 'Patience'
+$verse = InspiringQuran::theme('patience')->random();</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white border-t border-slate-100">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold font-display text-slate-900 mb-12">Designed for Developers</h2>
+            <div class="inline-block p-1 bg-slate-100 rounded-2xl">
+                <div class="bg-white border border-slate-200 rounded-xl p-8 max-w-2xl mx-auto">
+                    <p class="text-lg text-slate-600 italic font-serif leading-relaxed mb-6">
+                        "I built this package because I wanted a lightweight, reliable way to add spiritual value to my applications without relying on external APIs that might go down or change. It's simple, fast, and beautiful."
+                    </p>
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="w-10 h-10 bg-slate-900 rounded-full flex items-center justify-center text-white font-bold text-sm">UM</div>
+                        <div class="text-left">
+                            <div class="font-bold text-slate-900">Usman Ahmed Malik</div>
+                            <div class="text-xs text-slate-500">Creator</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-12">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <span class="text-white font-bold text-lg">Inspiring Quran</span>
+                <p class="text-sm mt-2">Open source software licensed under MIT.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="https://github.com/usmanahmedmalik/InspiringQuran" class="hover:text-white transition">GitHub</a>
+                <a href="https://packagist.org/packages/usmanahmedmalik/inspiring-quran" class="hover:text-white transition">Packagist</a>
+                <a href="index.html" class="hover:text-white transition">Portfolio</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

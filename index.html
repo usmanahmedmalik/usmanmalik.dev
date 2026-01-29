@@ -1,51 +1,507 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Usman Malik : Backend developer</title>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link href="https://unpkg.com/tailwindcss@^2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usman Ahmed Malik - Backend Developer & Photographer</title>
+    <meta name="description" content="Portfolio of Usman Ahmed Malik, a Backend Developer and Photographer based in Amsterdam.">
+    
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        primary: '#0f172a',
+                        accent: '#3b82f6',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out forwards',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        [x-cloak] { display: none !important; }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .parallax-wrapper {
+            will-change: transform;
+        }
+    </style>
 </head>
-<body>
+<body class="text-slate-800 antialiased bg-slate-50">
 
-<nav class="bg-white shadow-lg">
-    <div x-data="{ isOpen: false }" class="container mx-auto px-4">
-        <div class="flex justify-between items-center py-4">
-            <div>
-                <a href="#" class="text-xl font-bold text-gray-800">Usman Malik</a>
+    <!-- Navigation -->
+    <nav x-data="{ isOpen: false, scrolled: false }" 
+         @scroll.window="scrolled = (window.pageYOffset > 20)"
+         :class="scrolled ? 'shadow-md py-3' : 'py-5'"
+         class="fixed w-full top-0 z-50 transition-all duration-300 glass-nav">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#" class="text-2xl font-bold font-display tracking-tight text-slate-900">
+                    Usman<span class="text-accent">.</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <template x-for="item in ['About', 'Resume', 'Photography', 'Testimonials', 'Projects', 'Contact']">
+                        <a :href="'#' + item.toLowerCase()" 
+                           class="text-sm font-medium transition-colors hover:text-accent text-slate-700">
+                            <span x-text="item"></span>
+                        </a>
+                    </template>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button @click="isOpen = !isOpen" class="focus:outline-none">
+                        <svg class="h-6 w-6 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path x-show="!isOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
+                            <path x-show="isOpen" x-cloak stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <div class="lg:hidden">
-                <button @click="isOpen = !isOpen" type="button" class="block text-gray-700 hover:text-gray-900 focus:text-gray-900 focus:outline-none">
-                    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
-                        <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
+
+            <!-- Mobile Menu Dropdown -->
+            <div x-show="isOpen" 
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0 -translate-y-2"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 -translate-y-2"
+                 class="md:hidden mt-4 bg-white rounded-lg shadow-xl p-4 absolute left-4 right-4 text-center">
+                <template x-for="item in ['About', 'Resume', 'Photography', 'Testimonials', 'Projects', 'Contact']">
+                    <a :href="'#' + item.toLowerCase()" 
+                       @click="isOpen = false"
+                       class="block py-3 text-slate-600 font-medium hover:text-accent border-b border-slate-100 last:border-0">
+                        <span x-text="item"></span>
+                    </a>
+                </template>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <!-- Background Images with Parallax -->
+        <div class="absolute inset-0 z-0 parallax-wrapper" data-speed="0.5">
+            <div class="absolute inset-0 bg-slate-900/40 z-10"></div> <!-- Overlay -->
+            <img src="images/large.jpg" alt="Background" class="hidden lg:block w-full h-[120%] object-cover object-center animate-fade-in -mt-[10%]">
+            <img src="images/small.jpg" alt="Background" class="block lg:hidden w-full h-[120%] object-cover object-center animate-fade-in -mt-[10%]">
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-20 container mx-auto px-6 text-center parallax-wrapper" data-speed="0.2">
+            <div class="animate-slide-up">
+                <h1 class="text-5xl md:text-7xl font-bold font-display text-white mb-6 tracking-tight">
+                    Usman Ahmed Malik
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-200 font-light tracking-wide max-w-2xl mx-auto mb-10">
+                    Backend Developer & Photographer based in <span class="text-white font-medium">Amsterdam</span>
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#projects" class="px-8 py-3 bg-white text-slate-900 font-semibold rounded-full hover:bg-slate-100 transition shadow-lg">
+                        View Projects
+                    </a>
+                    <a href="#contact" class="px-8 py-3 border border-white text-white font-semibold rounded-full hover:bg-white/10 transition">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
+            <a href="#about" class="text-white opacity-70 hover:opacity-100 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- About / Resume Section -->
+    <section id="about" class="py-20 md:py-32 bg-white relative overflow-hidden">
+        <!-- Parallax Element -->
+        <div class="absolute top-20 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl parallax-wrapper" data-speed="-0.1"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-accent font-semibold tracking-wider text-sm uppercase">Resume</span>
+                    <h2 class="text-3xl md:text-4xl font-bold font-display text-slate-900 mt-2">About Me</h2>
+                    <div class="w-16 h-1 bg-accent mx-auto mt-6 rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-12">
+                    <!-- Bio & Skills -->
+                    <div class="md:col-span-1 space-y-8">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">Introduction</h3>
+                            <p class="text-slate-600 leading-relaxed">
+                                I'm a passionate software engineer specializing in backend systems. Currently building robust solutions for energy markets while capturing the world's beauty through my lens on weekends.
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">Skills</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-full">PHP</span>
+                                <span class="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-full">Laravel</span>
+                                <span class="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-full">MySQL</span>
+                                <span class="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-full">API Design</span>
+                                <span class="px-3 py-1 bg-slate-100 text-slate-700 text-sm rounded-full">Energy Markets</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 text-sm rounded-full border border-blue-100">Growth Marketing</span>
+                            </div>
+                        </div>
+                        <div class="pt-4">
+                            <a href="https://github.com/usmanahmedmalik" target="_blank" class="inline-flex items-center text-slate-900 font-medium hover:text-accent transition">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                GitHub Profile
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Experience & Education -->
+                    <div class="md:col-span-2 space-y-8">
+                        <div id="resume">
+                            <h3 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
+                                <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-3">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                </span>
+                                Experience
+                            </h3>
+                            <div class="relative pl-8 border-l-2 border-slate-100 space-y-10">
+                                
+                                <!-- Current Role -->
+                                <div class="relative">
+                                    <span class="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-white bg-accent ring-4 ring-blue-50"></span>
+                                    <h4 class="text-lg font-bold text-slate-900">Senior Software Engineer</h4>
+                                    <p class="text-accent text-sm font-medium mb-2">KYOS Energy Consulting B.V. • Amsterdam</p>
+                                    <p class="text-slate-500 text-sm mb-3">2021 - Present</p>
+                                    <ul class="list-disc list-outside ml-4 text-slate-600 text-sm space-y-1">
+                                        <li>Developing advanced analytical software for energy markets, focusing on price simulations.</li>
+                                        <li>Optimizing backend performance for large-scale data processing and risk management tools.</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Previous Role 1 -->
+                                <div class="relative">
+                                    <span class="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-white bg-slate-300"></span>
+                                    <h4 class="text-lg font-bold text-slate-900">Senior Software Engineer</h4>
+                                    <p class="text-slate-700 text-sm font-medium mb-2">Boldking.com • Netherlands</p>
+                                    <p class="text-slate-500 text-sm mb-3">2019 - 2021</p>
+                                    <ul class="list-disc list-outside ml-4 text-slate-600 text-sm space-y-1">
+                                        <li>Engineered robust backend APIs to support frontend architecture, ensuring seamless data integration and optimized system performance.</li>
+                                        <li>Maintained website stability and functionality through continuous support and troubleshooting, while collaborating with business stakeholders to translate commercial requirements into technical implementations.</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Previous Role 1 -->
+                                <div class="relative">
+                                    <span class="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-white bg-slate-300"></span>
+                                    <h4 class="text-lg font-bold text-slate-900">Backend Developer</h4>
+                                    <p class="text-slate-700 text-sm font-medium mb-2">Tele2 • Netherlands</p>
+                                    <p class="text-slate-500 text-sm mb-3">2017 - 2019</p>
+                                    <ul class="list-disc list-outside ml-4 text-slate-600 text-sm space-y-1">
+                                        <li>Contributed to core backend services supporting telecommunications infrastructure.</li>
+                                        <li>Collaborated with cross-functional teams to enhance product features and business logic.</li>
+                                        <li>Improved system reliability and maintainability through rigorous code reviews and testing.</li>
+                                    </ul>
+                                </div>
+                                <!-- Previous Role 3 -->
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-6 flex items-center">
+                                <span class="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center mr-3">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 14l9-5-9-5-9 5 9 5z"></path><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path></svg>
+                                </span>
+                                Education
+                            </h3>
+                            <div class="relative pl-8 border-l-2 border-slate-100">
+                                <div class="relative">
+                                    <span class="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-white bg-green-500 ring-4 ring-green-50"></span>
+                                    <h4 class="text-lg font-bold text-slate-900">University of Central Punjab</h4>
+                                    <p class="text-slate-500 text-sm">Computer Science</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photography Section -->
+    <section id="photography" class="py-20 bg-slate-50 relative overflow-hidden">
+        <!-- Decorative background elements -->
+        <div class="absolute top-20 left-10 w-64 h-64 bg-blue-100 rounded-full opacity-20 blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-100 rounded-full opacity-20 blur-3xl"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+                    Through My Lens
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Capturing moments from around the world, one frame at a time
+                </p>
+            </div>
+            
+            <!-- Instagram Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto mb-12">
+                <!-- Post 1: DPNuMGxDBpe -->
+                <div class="flex justify-center">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DPNuMGxDBpe/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:400px; min-width:280px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+                </div>
+                
+                <!-- Post 2: DO206spjAQO -->
+                <div class="flex justify-center">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DO206spjAQO/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:400px; min-width:280px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+                </div>
+                
+                <!-- Post 3: DLX1O1-NBt_ -->
+                <div class="flex justify-center">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DLX1O1-NBt_/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:400px; min-width:280px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+                </div>
+
+                <!-- Post 4: DKH3q9csgc7 -->
+                <div class="flex justify-center">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DKH3q9csgc7/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:400px; min-width:280px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+                </div>
+
+                <!-- Post 5: DIoGxHqNCwe -->
+                <div class="flex justify-center">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DIoGxHqNCwe/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:400px; min-width:280px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+                </div>
+
+                <!-- Post 6: C6JPKfENcQP -->
+                <div class="flex justify-center">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/C6JPKfENcQP/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:400px; min-width:280px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+                </div>
+
+                <!-- Post 7: CynpdPntE3O -->
+                <div class="flex justify-center">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/CynpdPntE3O/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:400px; min-width:280px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+                </div>
+
+                <!-- Post 8: Ctqq8K6NINs -->
+                <div class="flex justify-center">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/Ctqq8K6NINs/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:400px; min-width:280px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+                </div>
+
+                <!-- Post 9: CthMl5ctXVw -->
+                <div class="flex justify-center">
+                    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/CthMl5ctXVw/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:400px; min-width:280px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+                </div>
+            </div>
+            
+            <!-- CTA Button -->
+            <div class="text-center animate-slide-up">
+                <a href="https://www.instagram.com/uzi.in.the.wild/" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
-                </button>
-            </div>
-            <div class="absolute top-16 inset-x-0 bg-white z-10 lg:static lg:flex lg:justify-end lg:items-center lg:bg-transparent" :class="{ 'block': isOpen, 'hidden': !isOpen }">
-                <ul class="text-gray-700 lg:flex lg:items-center">
-                    <li class="block ml-5 lg:inline-block lg:mt-0 lg:ml-6"><a href="#about" class="hover:text-gray-900">Home</a></li>
-                    <li class="block ml-5 lg:inline-block lg:mt-0 lg:ml-6"><a href="#about" class="hover:text-gray-900">Resume</a></li>
-                    <li class="block ml-5 lg:inline-block lg:mt-0 lg:ml-6"><a href="#photography" class="hover:text-gray-900">Photography</a></li>
-                    <li class="block ml-5 lg:inline-block lg:mt-0 lg:ml-6"><a href="#contact" class="hover:text-gray-900">Contact</a></li>
-                </ul>
+                    View More on Instagram
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
             </div>
         </div>
-    </div>
-</nav>
+        
+        <!-- Instagram embed script - ONCE -->
+        <script async src="//www.instagram.com/embed.js"></script>
+    </section>
 
-<section class="relative h-screen w-full">
-    <div class="bg-cover bg-center bg-opacity-50 absolute inset-0 z-0 hidden lg:block" style="background-image:url('images/large.jpg')"></div>
-    <div class="bg-cover bg-center bg-opacity-50 absolute inset-0 z-0 block lg:hidden" style="background-image:url('images/small.jpg')"></div>
-    <div class="absolute inset-0 bg-gray-900 opacity-50 z-0"></div>
-    <div class="flex items-center justify-center h-full">
-        <div class="container mx-auto px-4 text-center z-10">
-            <h1 class="text-4xl font-bold text-white mt-0">I am Usman Ahmed Malik</h1>
-            <p class="text-lg mt-2 text-white">I'm a Back End Developer based in Amsterdam, The Netherlands.</p>
-            <p class="text-sm mt-2 text-white">Occasionally I also like going some photography.</p>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-accent font-semibold tracking-wider text-sm uppercase">Recommendations</span>
+                <h2 class="text-3xl md:text-4xl font-bold font-display text-slate-900 mt-2">What People Say</h2>
+                <div class="w-16 h-1 bg-accent mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Testimonial 1 -->
+                <div class="bg-slate-50 p-8 rounded-2xl shadow-sm border border-slate-100 relative">
+                    <svg class="w-10 h-10 text-slate-200 absolute top-6 left-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z"/></svg>
+                    <p class="text-slate-600 leading-relaxed italic mb-6 relative z-10 pt-8">
+                        "I had pleasure to work with Usman for more then year at Tele2, he possesses great variety of experience as software engineer with lots of in-depth knowledge in his field. Was stuck with me most was incisive comprehension of the business concepts and goals, working dedicated with team to bring work process and the products to new level. I would be happy to work with Usman again and give him my full recommendation"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold mr-3">PV</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">Peter van Velzen</h4>
+                            <p class="text-xs text-slate-500">Colleague at Tele2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-slate-50 p-8 rounded-2xl shadow-sm border border-slate-100 relative">
+                    <svg class="w-10 h-10 text-slate-200 absolute top-6 left-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z"/></svg>
+                    <p class="text-slate-600 leading-relaxed italic mb-6 relative z-10 pt-8">
+                        "Usman is an exceptional resource who wears multiple hats and can easily juggle multiple projects at a time. Apart from excellent technical skills, Usman is a great human being, very humble, polite and calm. He is a people's person, has tremendous skills in people management and has a calming influence over the team."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold mr-3">SS</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">Saifullah Shafiq</h4>
+                            <p class="text-xs text-slate-500">Project Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-slate-50 relative overflow-hidden">
+        <!-- Parallax Background Element -->
+        <div class="absolute -left-20 top-40 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl parallax-wrapper" data-speed="0.1"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-accent font-semibold tracking-wider text-sm uppercase">Open Source</span>
+                <h2 class="text-3xl md:text-4xl font-bold font-display text-slate-900 mt-2">Latest Projects</h2>
+                <div class="w-16 h-1 bg-accent mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <!-- Featured Project Card -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden group">
+                    <!-- Decor -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl -mr-20 -mt-20 parallax-wrapper" data-speed="-0.05"></div>
+                    
+                    <div class="relative z-10 flex flex-col md:flex-row gap-8 items-center">
+                        <div class="flex-1 text-left">
+                            <div class="inline-block px-3 py-1 bg-accent/20 text-accent rounded-full text-xs font-bold mb-4">LARAVEL PACKAGE</div>
+                            <h3 class="text-3xl font-bold font-display mb-3 group-hover:text-accent transition duration-300">Inspiring Quran</h3>
+                            <p class="text-slate-300 mb-6 leading-relaxed">
+                                A powerful Laravel package delivering 75+ curated Quranic verses in 7 different languages. Featuring 13 beautiful visual themes and zero external dependencies.
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-4 mb-8">
+                                <div class="text-center px-4 py-2 bg-white/5 rounded-lg border border-white/10">
+                                    <span class="block text-2xl font-bold text-white">75+</span>
+                                    <span class="text-xs text-slate-400">Verses</span>
+                                </div>
+                                <div class="text-center px-4 py-2 bg-white/5 rounded-lg border border-white/10">
+                                    <span class="block text-2xl font-bold text-white">7</span>
+                                    <span class="text-xs text-slate-400">Languages</span>
+                                </div>
+                                <div class="text-center px-4 py-2 bg-white/5 rounded-lg border border-white/10">
+                                    <span class="block text-2xl font-bold text-white">13</span>
+                                    <span class="text-xs text-slate-400">Themes</span>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-4">
+                                <a href="inspiring-quran.html" class="px-6 py-3 bg-white text-slate-900 font-bold rounded-lg hover:bg-slate-100 transition shadow-lg flex items-center">
+                                    View Demo
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                </a>
+                                <a href="https://github.com/usmanahmedmalik/InspiringQuran" target="_blank" class="px-6 py-3 border border-white/30 text-white font-medium rounded-lg hover:bg-white/10 transition flex items-center">
+                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-slate-900 text-white border-t border-slate-800">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold font-display mb-8">Let's Connect</h2>
+            <p class="text-slate-400 mb-10 max-w-lg mx-auto">Always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
+            
+            <div class="flex justify-center space-x-8 mb-16">
+                <a href="https://github.com/usmanahmedmalik" class="text-slate-400 hover:text-white transition transform hover:scale-110">
+                    <span class="sr-only">GitHub</span>
+                    <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/usmanahmedmalik/" class="text-slate-400 hover:text-white transition transform hover:scale-110">
+                    <span class="sr-only">LinkedIn</span>
+                    <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <a href="https://instagram.com/uzi.in.the.wild" class="text-slate-400 hover:text-white transition transform hover:scale-110">
+                    <span class="sr-only">Instagram</span>
+                    <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+            </div>
+            
+            <p class="text-slate-600 text-sm">© <span x-text="new Date().getFullYear()"></span> Usman Ahmed Malik. All rights reserved.</p>
+        </div>
+    </section>
+
+    <!-- Parallax Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const parallaxElements = document.querySelectorAll('.parallax-wrapper');
+            
+            const handleScroll = () => {
+                const scrolled = window.pageYOffset;
+                
+                parallaxElements.forEach(el => {
+                    const speed = el.dataset.speed || 0.1;
+                    const yPos = -(scrolled * speed);
+                    el.style.transform = `translateY(${yPos}px)`;
+                });
+            };
+
+            // Use requestAnimationFrame for smooth performance
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        handleScroll();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
