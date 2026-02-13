@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Prophet's Journey - Introduction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                        display: ['Cinzel', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            gold: '#D4AF37',
+                            dark: '#1A1A1A',
+                            paper: '#F9F5F1',
+                            accent: '#2D3748',
+                            muted: '#A0AEC0'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.5);
+            border-radius: 3px;
+        }
+
+        /* Islamic Styles */
+        .bg-islamic-pattern {
+            background-image: url('images/bg-pattern.png');
+            background-blend-mode: multiply;
+        }
+
+        .dark .bg-islamic-pattern {
+            background-blend-mode: color-dodge;
+            opacity: 0.1;
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fade-in-up 1s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-brand-paper text-brand-dark h-screen overflow-hidden relative dark:bg-brand-dark dark:text-white transition-colors duration-500">
+
+    <!-- Theme Toggle (Absolute Top Right) -->
+    <div class="absolute top-6 right-6 z-50">
+        <button id="toggleTheme"
+            class="text-brand-dark dark:text-brand-gold hover:text-brand-gold transition-colors p-2 bg-white/50 dark:bg-black/20 rounded-full backdrop-blur-sm border border-brand-dark/10 dark:border-white/10 shadow-sm">
+            <!-- Sun Icon (Hidden in Light Mode, Shows in Dark Mode) -->
+            <svg class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                </path>
+            </svg>
+            <!-- Moon Icon (Shows in Light Mode, Hidden in Dark Mode) -->
+            <svg class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Background Pattern -->
+    <div
+        class="absolute inset-0 z-0 bg-islamic-pattern opacity-10 dark:opacity-30 pointer-events-none transition-opacity duration-500">
+    </div>
+    <!-- Gradient Overlay: Light Mode (Transparent White) vs Dark Mode (Dark Fade) -->
+    <div
+        class="absolute inset-0 z-0 bg-gradient-to-b from-white/60 via-brand-paper/80 to-brand-paper dark:from-brand-dark/90 dark:via-brand-dark/95 dark:to-brand-dark transition-colors duration-500 pointer-events-none">
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative z-10 w-full h-full overflow-y-auto custom-scroll">
+        <div
+            class="max-w-6xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row gap-8 md:gap-16 items-center md:items-start text-center md:text-left">
+
+            <!-- Left Column: Sticky Cover (Desktop) -->
+            <div class="w-full md:w-1/3 md:sticky md:top-12 flex flex-col items-center">
+                <div
+                    class="w-48 md:w-full max-w-sm shadow-2xl rounded-xl overflow-hidden border-2 border-brand-gold animate-fade-in-up mb-6 relative group">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <img src="images/cover-art.png" alt="Cover Art"
+                        class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700">
+                </div>
+            </div>
+
+            <!-- Right Column: The Content -->
+            <div class="w-full md:w-2/3 prose prose-lg pb-20 dark:prose-invert">
+                <h1
+                    class="font-display text-4xl md:text-6xl text-brand-dark dark:text-brand-gold mb-8 text-center md:text-left leading-tight drop-shadow-sm dark:drop-shadow-lg transition-colors">
+                    The Prophet's Journey
+                </h1>
+
+                <div
+                    class="font-serif text-gray-700 dark:text-gray-300 space-y-6 leading-relaxed text-lg md:text-xl transition-colors">
+                    <p><span class="text-brand-gold text-2xl font-display float-left mr-2 mt-[-6px]">L</span>et's be
+                        real. We live in a world of instant everything—instant messages, instant gratification, instant
+                        cancel culture. But some things? They take time. Real growth, real change, real
+                        understanding—they don't happen overnight.</p>
+
+                    <p>That's why you're here. For the next 29 days, we're going on a journey together. Not just any
+                        journey—we're walking in the footsteps of the greatest human being who ever lived: <span
+                            class="text-brand-gold font-bold whitespace-nowrap">Prophet Muhammad ﷺ</span>.</p>
+
+                    <p
+                        class="border-l-4 border-brand-gold pl-4 italic text-brand-dark/90 dark:text-white/90 bg-brand-gold/10 dark:bg-white/5 p-4 rounded-r-lg">
+                        But
+                        here's the thing: this isn't your typical history lesson. This is about YOU. About finding
+                        purpose when the world feels chaotic. About standing up for truth when everyone's chasing
+                        trends. About being authentic when filters dominate everything.</p>
+                </div>
+
+                <div
+                    class="my-10 bg-white/60 dark:bg-white/5 p-8 rounded-2xl border border-brand-dark/5 dark:border-brand-gold/20 shadow-lg backdrop-blur-sm transition-colors">
+                    <h3
+                        class="text-2xl font-display text-brand-dark dark:text-brand-gold mb-6 border-b border-brand-dark/10 dark:border-brand-gold/20 pb-2">
+                        Think
+                        about it:</h3>
+                    <ul class="space-y-4 text-gray-700 dark:text-gray-300 list-none pl-0">
+                        <li class="flex gap-4 items-start"><span class="text-brand-gold mt-1 text-xl">✦</span>
+                            <span>Ever felt misunderstood? <span class="text-brand-dark dark:text-white font-medium">So
+                                    did he.</span></span>
+                        </li>
+                        <li class="flex gap-4 items-start"><span class="text-brand-gold mt-1 text-xl">✦</span>
+                            <span>Ever been rejected by people you thought would support you? <span
+                                    class="text-brand-dark dark:text-white font-medium">Been there.</span></span>
+                        </li>
+                        <li class="flex gap-4 items-start"><span class="text-brand-gold mt-1 text-xl">✦</span>
+                            <span>Ever had to start from zero? <span
+                                    class="text-brand-dark dark:text-white font-medium">That was his story
+                                    too.</span></span>
+                        </li>
+                        <li class="flex gap-4 items-start"><span class="text-brand-gold mt-1 text-xl">✦</span>
+                            <span>Ever stood alone for something you believed in? <span
+                                    class="text-brand-dark dark:text-white font-medium">He stood when everyone else sat
+                                    down.</span></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mb-10">
+                    <h3 class="text-3xl font-display text-brand-dark dark:text-white mb-4 transition-colors">What to
+                        Expect:</h3>
+                    <p class="text-gray-600 dark:text-brand-muted mb-6">Each day is designed to take about 15-20
+                        minutes. Less than one
+                        episode of your favorite show.</p>
+                    <div class="grid gap-4 md:grid-cols-2">
+                        <div
+                            class="bg-white/50 dark:bg-brand-paper/5 p-4 rounded-lg border border-brand-dark/5 dark:border-white/5 hover:border-brand-gold/50 transition-colors shadow-sm dark:shadow-none">
+                            <strong class="text-brand-dark dark:text-brand-gold block font-display mb-1">1. The
+                                Story</strong>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">What actually happened, told in a way
+                                that hits
+                                different</span>
+                        </div>
+                        <div
+                            class="bg-white/50 dark:bg-brand-paper/5 p-4 rounded-lg border border-brand-dark/5 dark:border-white/5 hover:border-brand-gold/50 transition-colors shadow-sm dark:shadow-none">
+                            <strong class="text-brand-dark dark:text-brand-gold block font-display mb-1">2. The
+                                Revelations</strong>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Which verses came down when, and why
+                                they
+                                mattered</span>
+                        </div>
+                        <div
+                            class="bg-white/50 dark:bg-brand-paper/5 p-4 rounded-lg border border-brand-dark/5 dark:border-white/5 hover:border-brand-gold/50 transition-colors shadow-sm dark:shadow-none">
+                            <strong class="text-brand-dark dark:text-brand-gold block font-display mb-1">3. The Real
+                                Talk</strong>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">How this connects to your life RIGHT
+                                NOW</span>
+                        </div>
+                        <div
+                            class="bg-white/50 dark:bg-brand-paper/5 p-4 rounded-lg border border-brand-dark/5 dark:border-white/5 hover:border-brand-gold/50 transition-colors shadow-sm dark:shadow-none">
+                            <strong class="text-brand-dark dark:text-brand-gold block font-display mb-1">4. The
+                                Reflection</strong>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Questions to think about, not to
+                                stress about</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-12">
+                    <h3 class="text-2xl font-display text-brand-dark dark:text-white mb-4 transition-colors">How to Use
+                        This:</h3>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300 list-disc pl-5 marker:text-brand-gold">
+                        <li>Don't rush. One day at a time. This isn't a race.</li>
+                        <li>Be honest with yourself. The reflections work when you're real.</li>
+                        <li>Share what you learn. Drop it in the group chat. Your story might be what someone else
+                            needs.</li>
+                        <li>Come back to it. Some days will hit harder than others. That's normal.</li>
+                    </ul>
+                </div>
+
+                <div
+                    class="text-center md:text-left mt-8 flex flex-col items-center md:items-start text-brand-dark dark:text-white transition-colors">
+                    <p class="text-3xl font-display mb-8">Ready? Let's go.</p>
+
+                    <a href="journey.html" id="startJourneyBtn"
+                        class="group relative px-12 py-5 bg-gradient-to-r from-brand-gold to-yellow-600 overflow-hidden rounded-full text-white font-bold tracking-widest uppercase transition-all hover:scale-105 shadow-[0_0_30px_rgba(212,175,55,0.5)] inline-block">
+                        <span class="relative z-10 flex items-center justify-center gap-3">
+                            <span id="startBtnText">Begin Journey</span>
+                            <svg class="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script>
+        // Simple logic to show "Continue Day X" if user made progress, 
+        // without importing the massive app.js
+        const STORE_KEY_PROGRESS = 'seerah_progress';
+        const unlockedDay = parseInt(localStorage.getItem(STORE_KEY_PROGRESS) || '1');
+        const btnText = document.getElementById('startBtnText');
+
+        if (unlockedDay > 1) {
+            btnText.textContent = `Continue Day ${unlockedDay}`;
+        }
+    </script>
+</body>
+
+</html>
