@@ -49,12 +49,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Content Data ---
     // --- Content Data ---
-    // Content is now loaded from seerah-data.js
-
-
-    // --- Functions ---
+    let chapters = {};
 
     // --- Functions ---
+
+    async function loadData() {
+        try {
+            const response = await fetch('data/seerah.json');
+            if (!response.ok) throw new Error('Failed to load data');
+            chapters = await response.json();
+            init();
+        } catch (error) {
+            console.error('Error loading Seerah data:', error);
+            contentAreaEl.innerHTML = `<div class="text-center p-10 text-red-500">Error loading content. Please try refreshing.</div>`;
+        }
+    }
 
     function init() {
         // Check for ?day=X in URL
@@ -85,6 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (activeLink) activeLink.scrollIntoView({ block: 'center' });
         }, 100);
     }
+
+    // Start
+    loadData();
 
     function renderSidebar() {
         chapterListEl.innerHTML = '';
@@ -399,6 +411,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Start
-    init();
+    // Initial load handled by loadData()
 });

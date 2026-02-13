@@ -6,9 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Prophet's Journey - 29 Days</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#D4AF37">
+    <link rel="apple-touch-icon" href="/images/icon-192.png">
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap"
         rel="stylesheet">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('Service Worker Registered'))
+                .catch(err => console.log('Service Worker Failed', err));
+        }
+    </script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -143,11 +153,11 @@
 </head>
 
 <body
-    class="bg-brand-paper text-brand-dark overflow-hidden flex h-screen relative dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    class="bg-brand-paper text-brand-dark overflow-hidden flex h-[100dvh] relative dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
 
     <!-- Sidebar: Chapter Navigation -->
     <aside
-        class="w-80 bg-white border-r border-gray-200 flex flex-col h-full shadow-lg z-10 transition-transform transform md:translate-x-0 -translate-x-full fixed md:relative dark:bg-gray-800 dark:border-gray-700"
+        class="w-80 bg-white border-r border-gray-200 flex flex-col h-full shadow-lg z-[100] transition-transform transform md:translate-x-0 -translate-x-full fixed md:relative dark:bg-gray-800 dark:border-gray-700"
         id="sidebar">
         <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between">
             <div>
@@ -367,7 +377,6 @@
     </div>
 
     <!-- JS Logic -->
-    <script src="js/seerah-data.js"></script>
     <script src="js/templates.js"></script>
     <script src="js/app.js"></script>
     <script src="js/theme.js"></script>

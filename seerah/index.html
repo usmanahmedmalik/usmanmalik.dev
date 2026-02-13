@@ -6,9 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Prophet's Journey - Introduction</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#D4AF37">
+    <link rel="apple-touch-icon" href="/images/icon-192.png">
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap"
         rel="stylesheet">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('Service Worker Registered'))
+                .catch(err => console.log('Service Worker Failed', err));
+        }
+    </script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -129,7 +139,9 @@
 
                 <div
                     class="font-serif text-gray-700 dark:text-gray-300 space-y-6 leading-relaxed text-lg md:text-xl transition-colors">
-                    <p><span class="text-brand-gold text-2xl font-display float-left mr-2 mt-[-6px]">L</span>et's be
+                    <p><span
+                            class="text-brand-gold text-6xl float-left mr-3 mt-1 font-display leading-none">L</span>et's
+                        be
                         real. We live in a world of instant everything—instant messages, instant gratification, instant
                         cancel culture. But some things? They take time. Real growth, real change, real
                         understanding—they don't happen overnight.</p>
