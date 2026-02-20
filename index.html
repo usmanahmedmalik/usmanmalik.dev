@@ -116,17 +116,7 @@
             background-image: linear-gradient(135deg, #f8fafc 0%, #60a5fa 100%);
         }
 
-        .bg-grid-light {
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-
-        .dark .bg-grid-dark {
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
+        /* Hidden base classes if needed, ambient blobs handle light mode background now */
 
         .parallax-wrapper {
             will-change: transform;
@@ -140,11 +130,35 @@
 </head>
 
 <body
-    class="text-slate-800 dark:text-slate-200 antialiased bg-slate-50 dark:bg-primary-dark transition-colors duration-500 overflow-x-hidden selection:bg-accent selection:text-white relative">
+    class="text-slate-800 dark:text-slate-200 antialiased bg-[#f4f7fb] dark:bg-primary-dark transition-colors duration-500 overflow-x-hidden selection:bg-accent selection:text-white relative">
 
-    <!-- Background grid decoration -->
-    <div
-        class="fixed inset-0 pointer-events-none z-[-1] bg-grid-light dark:bg-grid-dark transition-opacity duration-500">
+    <!-- Ambient Background Decor -->
+    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        <!-- Light Mode Ambient Orbs -->
+        <div class="absolute inset-0 dark:opacity-0 transition-opacity duration-1000">
+            <div
+                class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-blue-400/20 rounded-full blur-[120px] mix-blend-multiply animate-float">
+            </div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-purple-400/20 rounded-full blur-[120px] mix-blend-multiply animate-float"
+                style="animation-delay: 2s;"></div>
+            <div class="absolute top-[20%] right-[10%] w-[40vw] h-[40vw] bg-rose-300/20 rounded-full blur-[120px] mix-blend-multiply animate-float"
+                style="animation-delay: 4s;"></div>
+            <div class="absolute bottom-[20%] left-[20%] w-[40vw] h-[40vw] bg-cyan-300/20 rounded-full blur-[100px] mix-blend-multiply animate-float"
+                style="animation-delay: 6s;"></div>
+        </div>
+
+        <!-- Dark Mode Ambient Orbs -->
+        <div class="absolute inset-0 opacity-0 dark:opacity-100 transition-opacity duration-1000">
+            <div
+                class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-blue-600/10 rounded-full blur-[150px] mix-blend-screen animate-float">
+            </div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-purple-600/10 rounded-full blur-[150px] mix-blend-screen animate-float"
+                style="animation-delay: 2s;"></div>
+            <div class="absolute top-[20%] right-[10%] w-[40vw] h-[40vw] bg-indigo-500/10 rounded-full blur-[150px] mix-blend-screen animate-float"
+                style="animation-delay: 4s;"></div>
+            <div class="absolute bottom-[20%] left-[20%] w-[40vw] h-[40vw] bg-cyan-600/10 rounded-full blur-[120px] mix-blend-screen animate-float"
+                style="animation-delay: 6s;"></div>
+        </div>
     </div>
 
     <!-- Navigation -->
@@ -165,9 +179,9 @@
                 this.activeSection = current;
             }
          }" @scroll.window="scrolled = (window.pageYOffset > 20); updateActiveSection()" x-init="updateActiveSection()"
-        :class="scrolled ? 'shadow-lg dark:shadow-none py-3' : 'py-5'"
-        class="fixed w-full top-0 z-50 transition-all duration-300 glass border-b border-transparent dark:border-white/5">
-        <div class="container mx-auto px-6">
+        :class="scrolled ? 'top-4 md:top-6 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] py-3 px-6 md:px-8' : 'top-6 md:top-8 shadow-sm py-4 px-6 md:px-10'"
+        class="fixed left-1/2 -translate-x-1/2 w-[92%] md:w-[85%] max-w-6xl z-50 transition-all duration-500 rounded-full glass-panel border border-white/60 dark:border-white/10">
+        <div class="w-full relative">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <a href="#"
@@ -228,10 +242,12 @@
 
             <!-- Mobile Menu Dropdown -->
             <div x-show="isOpen" x-transition:enter="transition ease-out duration-200"
-                x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:enter-start="opacity-0 -translate-y-2 scale-95"
+                x-transition:enter-end="opacity-100 translate-y-0 scale-100"
                 x-transition:leave="transition ease-in duration-150"
-                x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2"
-                class="md:hidden mt-4 glass-panel rounded-2xl p-4 absolute left-4 right-4 text-center border border-slate-200 dark:border-slate-700">
+                x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+                x-transition:leave-end="opacity-0 -translate-y-2 scale-95"
+                class="md:hidden mt-4 glass-panel rounded-2xl p-4 absolute left-0 right-0 top-full text-center border border-slate-200 dark:border-slate-700 shadow-xl origin-top">
                 <template x-for="item in ['About', 'Resume', 'Photography', 'Projects', 'Contact']">
                     <a :href="'#' + item.toLowerCase()" @click="isOpen = false"
                         :class="activeSection === item.toLowerCase() ? 'text-accent dark:text-accent' : 'text-slate-600 dark:text-slate-300 hover:text-accent dark:hover:text-accent'"
